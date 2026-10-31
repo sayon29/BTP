@@ -1,0 +1,16 @@
+{
+  "repository_url": "https://github.com/Serdark4ra/SERSEM-Poisoned-Chalice-Competition-2026.git",
+  "commit_sha": "413f56040e5b4805bcf15ed794dec56bc4e16b41",
+  "source_sha256": {
+    "README.md": "490568a6c14b7493b75deb736b1ec03df6c94280e23e5a02d6f400e2ad3efffd",
+    "requirements.txt": "4904a6763099cafcf0c70357d78dfbab591c9d7d6171c97867e8f287b920bd0b",
+    "run_pipeline.sh": "e703e3e228e91372668da4c883330b9addeab61705d8199ae95d4c5a7fed072a",
+    "code/ASTExtractor.py": "caadec9f6076b4918738e2f1293ab5d9285a7840f0dec373c681e8ddfaec33b1",
+    "code/LinterExtractor.py": "b82b0b92839b7bb3d46087daa852f4a98347b2ac655a441dc07f7925f6d43082",
+    "code/LumiaAttack.py": "37cc196a73cb0fffa0000291b3388c87d6ab044f2a3e0df4d493ff96e2d9af2c",
+    "code/MIAttack.py": "e276c04e6c126f9b6221d1297cd278eae5e2a73acd3241cb338c5e92d929ebe1",
+    "code/plot_results.py": "b401d441e4b0d91ad792c3254b90d27de01463b6425f806521222181b8c50b92",
+    "code/run.py": "910cf57ebc270a4a13eb939850382ec8524f17f64906e06ab89d7bd7c17a4e0a",
+    "code/transformers_compat.py": "3f3841189eed01c48e72600718e0b7558416430b9bb0fd0e55d93538b5ea7509"
+  }
+}

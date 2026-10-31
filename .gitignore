@@ -1,0 +1,12 @@
+# Intact nested upstream is intentionally not vendored into the outer repository.
+/SERSEM-Poisoned-Chalice-Competition-2026/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+*.pkl
+*.safetensors
+*.bin
+/kaggle_outputs/
+/hf_cache/

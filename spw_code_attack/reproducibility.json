@@ -1,0 +1,36 @@
+{
+  "schema": "spw-inspired-config-v1",
+  "method_name": "SPW-inspired dynamic-halving weighted Bernoulli-JS",
+  "paper_faithful": false,
+  "paper_doi": "10.1016/j.knosys.2026.116100",
+  "paper_equations_retrieved": false,
+  "model_id": "bigcode/starcoder2-3b",
+  "dtype": "float16",
+  "analysis_target_tokens": 256,
+  "seed": 42,
+  "shortening": "successive floor(length/2) suffixes; accept while greedy equals original greedy; stop at first mismatch or length 1",
+  "position_policy": "each shortened suffix starts at position zero; no artificial BOS or padding",
+  "weight": "1 + (1 - shortest_accepted_length/original_prefix_length) * (1 - abs(original_true_probability - accepted_true_probability))",
+  "score": "negative weighted mean Jensen-Shannon divergence between Bernoulli(original_true_probability) and Bernoulli(original_greedy_probability)",
+  "score_direction": "higher_is_member; fixed before labels",
+  "logarithm": "natural",
+  "probability_computation": "FP32 log_softmax; cached log probabilities; FP64 probability/divergence/weight reduction",
+  "original_forward_chunk_tokens": 256,
+  "shortened_batch_size": 4,
+  "comparison_policy": "same length only, deduplicated exact token prefixes; no padding or cross-prefix KV reuse",
+  "reference_model": null,
+  "hyperparameter_search": false,
+  "smoke_counts": {
+    "shadow": 80,
+    "validation": 20,
+    "calibration": 20,
+    "heldout": 30
+  },
+  "full_counts": {
+    "shadow": 1600,
+    "validation": 200,
+    "calibration": 200,
+    "heldout": 1000
+  },
+  "head_projection": "fixed one-row LM head; lossless native float16 terminal cache"
+}

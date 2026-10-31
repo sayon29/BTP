@@ -1,0 +1,76 @@
+{
+  "status": "static checks passed; no attacks/notebook cells executed",
+  "cells": [
+    {
+      "index": 1,
+      "id": "neighbour-settings"
+    },
+    {
+      "index": 3,
+      "id": "neighbour-source"
+    },
+    {
+      "index": 4,
+      "id": "neighbour-install"
+    },
+    {
+      "index": 5,
+      "id": "neighbour-initialize"
+    },
+    {
+      "index": 7,
+      "id": "neighbour-cache-setup"
+    },
+    {
+      "index": 9,
+      "id": "neighbour-run"
+    },
+    {
+      "index": 10,
+      "id": "neighbour-report"
+    }
+  ],
+  "required_cfg_fields": [
+    "allow_comment_insertion",
+    "allow_python_local_rename",
+    "dtype",
+    "k",
+    "max_length",
+    "max_sites",
+    "mlm_batch_size",
+    "mlm_cache_dir",
+    "mlm_id",
+    "mlm_local_files_only",
+    "mlm_max_length",
+    "mlm_revision",
+    "mlm_top_k",
+    "model_cache_dir",
+    "model_id",
+    "model_local_files_only",
+    "model_revision",
+    "nll_logit_chunk_size",
+    "nll_reuse_from",
+    "park_mlm_on_cpu",
+    "seed",
+    "source_chunk_size",
+    "target_batch_size"
+  ],
+  "helper_calls_checked": [
+    "install_dependencies",
+    "validate_environment",
+    "validate_heldout_manifest",
+    "validate_saved_scores",
+    "write_json",
+    "write_json",
+    "Monitor",
+    "SourceStore",
+    "StructuralWeights",
+    "restore_run",
+    "ensure_model_snapshot",
+    "ensure_dataset_cache",
+    "run_neighbourhood",
+    "load_target",
+    "evaluate_results"
+  ],
+  "limitations": "Does not validate CUDA, wheels, grammar behavior, perturbation safety/success, scores, memory or throughput."
+}

@@ -1,0 +1,515 @@
+{
+  "status": "static checks passed; no notebook/helper/attack execution",
+  "analysis_scope": "sequential definite bindings, comprehension scopes, helper exports/call arity, configuration field coverage",
+  "code_cells": [
+    {
+      "cell_index": 1,
+      "cell_id": "stage1-user-settings",
+      "new_definite_names": [
+        "ATTENTION_BACKEND",
+        "AUTO_DOWNLOAD_MODEL_IF_MISSING",
+        "AUTO_PREPARE_DATASET_IF_MISSING",
+        "BENCHMARK_EXAMPLES",
+        "BRANCHES",
+        "DATASET_CACHE_DIR",
+        "DATASET_ID",
+        "DATASET_PREPARATION_BUDGET_GIB",
+        "DATASET_REVISION",
+        "DATA_ACCESS",
+        "DEV_PER_LANGUAGE",
+        "DISABLE_UNUSED_KV_CACHE",
+        "DISK_RESERVE_GIB",
+        "DOWNLOAD_MIN_FREE_GIB",
+        "DTYPE",
+        "EVALUATE_HELDOUT",
+        "FAITHFUL_MODE",
+        "FEATURE_CHUNK_SIZE",
+        "FEATURE_STORAGE_DTYPE",
+        "FUSION_ALPHA",
+        "FUSION_ALPHA_GRID",
+        "FUSION_MODE",
+        "GREYBOX_EPSILON",
+        "GREYBOX_LOGIT_CHUNK_SIZE",
+        "INPUT_ROOT",
+        "INVALID_CONTENT_POLICY",
+        "LAYER_GROUP_SIZE",
+        "LOG_INTERVAL_SECONDS",
+        "MAX_LENGTH",
+        "MODE",
+        "MODEL_CACHE_DIR",
+        "MODEL_ID",
+        "MODEL_LOCAL_FILES_ONLY",
+        "MODEL_REVISION",
+        "OUTPUT_ROOT",
+        "PROBE_MODE",
+        "PROBE_PATH",
+        "PROJECT_REF",
+        "PROJECT_REPO_URL",
+        "PROJECT_ROOT",
+        "Path",
+        "RAM_RESERVE_GIB",
+        "RESOURCE_VALIDATION_EXAMPLES",
+        "RESUME_FROM",
+        "RUN_ID",
+        "RUN_TIMING_BENCHMARK",
+        "SCORE_CHUNK_SIZE",
+        "SEED",
+        "SESSION_BUDGET_MINUTES",
+        "SOURCE_MODE",
+        "TEST_PER_LANGUAGE",
+        "TEXT_CACHE_GIB",
+        "TIMING_ONLY",
+        "TRUST_PROBE_PICKLE",
+        "UPLOAD_SOURCE",
+        "UPLOAD_ZIP",
+        "UPSTREAM_NAME",
+        "UPSTREAM_SHA",
+        "UPSTREAM_URL",
+        "WORK_ROOT"
+      ]
+    },
+    {
+      "cell_index": 3,
+      "cell_id": "stage1-source",
+      "new_definite_names": [
+        "EXPECTED_FRAMEWORK_SHA256",
+        "EXPECTED_NEIGHBOURHOOD_SHA256",
+        "UPSTREAM",
+        "hashlib",
+        "json",
+        "manifest",
+        "os",
+        "shutil",
+        "subprocess",
+        "sys",
+        "zipfile"
+      ]
+    },
+    {
+      "cell_index": 5,
+      "cell_id": "stage1-install",
+      "new_definite_names": [
+        "install_dependencies",
+        "installation_report",
+        "requirements_file",
+        "system_packages",
+        "system_status"
+      ]
+    },
+    {
+      "cell_index": 7,
+      "cell_id": "stage1-initialize",
+      "new_definite_names": [
+        "HfApi",
+        "Monitor",
+        "OUT",
+        "SourceStore",
+        "WeightedAnomalyMIA",
+        "add_fusion",
+        "api",
+        "attach_runtime",
+        "benchmark_sersem",
+        "build_attack",
+        "cfg",
+        "config_path",
+        "dataset_revision",
+        "environment_report",
+        "estimate_sersem_runtime",
+        "evaluate_branches",
+        "fit_fusion",
+        "freeze_thresholds",
+        "install_probe_timer",
+        "math",
+        "model_revision",
+        "monitor",
+        "np",
+        "preflight",
+        "prepare_probes",
+        "random",
+        "restore_run",
+        "saved_cfg",
+        "saved_config_path",
+        "score_branches",
+        "semantic_cfg",
+        "split_calibration",
+        "torch",
+        "validate_environment",
+        "validate_resources",
+        "write_json"
+      ]
+    },
+    {
+      "cell_index": 9,
+      "cell_id": "stage1-cache-setup",
+      "new_definite_names": [
+        "dataset_cache_report",
+        "ensure_dataset_cache",
+        "ensure_model_snapshot",
+        "model_cache_report"
+      ]
+    },
+    {
+      "cell_index": 11,
+      "cell_id": "stage1-pipeline-8",
+      "new_definite_names": [
+        "calibration",
+        "fusion_fit",
+        "heldout",
+        "resource_plan",
+        "shadow",
+        "source_store",
+        "threshold_calibration"
+      ]
+    },
+    {
+      "cell_index": 13,
+      "cell_id": "stage1-pipeline-10",
+      "new_definite_names": [
+        "attack",
+        "greybox"
+      ]
+    },
+    {
+      "cell_index": 15,
+      "cell_id": "stage1-pipeline-12",
+      "new_definite_names": []
+    }
+  ],
+  "required_cfg_fields": [
+    "branches",
+    "dataset_id",
+    "dataset_revision",
+    "dev_per_language",
+    "dtype",
+    "feature_chunk_size",
+    "fusion",
+    "fusion.alpha",
+    "fusion.alpha_grid",
+    "fusion.mode",
+    "greybox",
+    "greybox.epsilon",
+    "greybox.logit_chunk_size",
+    "invalid_content_policy",
+    "max_length",
+    "model_id",
+    "model_revision",
+    "probe_mode",
+    "probe_path",
+    "resources",
+    "resources.attention_backend",
+    "resources.data_access",
+    "resources.disk_reserve_gib",
+    "resources.faithful",
+    "resources.feature_dtype",
+    "resources.layer_group_size",
+    "resources.log_interval_seconds",
+    "resources.model_cache_dir",
+    "resources.model_local_files_only",
+    "resources.ram_reserve_gib",
+    "resources.score_chunk_size",
+    "resources.session_budget_minutes",
+    "resources.text_cache_gib",
+    "resources.validation_examples",
+    "runner_sha256",
+    "seed",
+    "test_per_language",
+    "trust_probe_pickle",
+    "versions"
+  ],
+  "configured_cfg_fields": [
+    "branches",
+    "dataset_id",
+    "dataset_revision",
+    "dev_per_language",
+    "dtype",
+    "feature_chunk_size",
+    "fusion",
+    "fusion.alpha",
+    "fusion.alpha_grid",
+    "fusion.mode",
+    "greybox",
+    "greybox.epsilon",
+    "greybox.implementation",
+    "greybox.logit_chunk_size",
+    "invalid_content_policy",
+    "max_length",
+    "mode",
+    "model_id",
+    "model_revision",
+    "probe_mode",
+    "probe_path",
+    "python_version",
+    "requested_dataset_revision",
+    "requested_model_revision",
+    "resources",
+    "resources.attention_backend",
+    "resources.data_access",
+    "resources.disable_kv_cache",
+    "resources.disk_reserve_gib",
+    "resources.enabled",
+    "resources.faithful",
+    "resources.feature_dtype",
+    "resources.layer_group_size",
+    "resources.log_interval_seconds",
+    "resources.model_cache_dir",
+    "resources.model_local_files_only",
+    "resources.ram_reserve_gib",
+    "resources.score_chunk_size",
+    "resources.session_budget_minutes",
+    "resources.text_cache_gib",
+    "resources.validation_examples",
+    "runner_sha256",
+    "seed",
+    "test_per_language",
+    "trust_probe_pickle",
+    "upstream_sha",
+    "versions"
+  ],
+  "imported_helper_signatures": {
+    "install_dependencies": {
+      "arguments": [
+        "requirements_path",
+        "work_root"
+      ],
+      "required_count": 2
+    },
+    "validate_environment": {
+      "arguments": [
+        "requirements_path"
+      ],
+      "required_count": 1
+    },
+    "benchmark_sersem": {
+      "arguments": [
+        "attack",
+        "greybox",
+        "store",
+        "shadow",
+        "cfg",
+        "out",
+        "count"
+      ],
+      "required_count": 6
+    },
+    "install_probe_timer": {
+      "arguments": [
+        "attack",
+        "out"
+      ],
+      "required_count": 2
+    },
+    "estimate_sersem_runtime": {
+      "arguments": [
+        "cfg",
+        "out",
+        "shadow_rows",
+        "fusion_rows",
+        "calibration_rows",
+        "heldout_rows"
+      ],
+      "required_count": 6
+    },
+    "score_branches": {
+      "arguments": [
+        "attack",
+        "greybox",
+        "frame",
+        "cfg",
+        "path"
+      ],
+      "required_count": 5
+    },
+    "SourceStore": {
+      "arguments": [
+        "cfg",
+        "out",
+        "monitor"
+      ],
+      "required_count": 3
+    },
+    "Monitor": {
+      "arguments": [
+        "cfg",
+        "out"
+      ],
+      "required_count": 2
+    },
+    "preflight": {
+      "arguments": [
+        "cfg",
+        "out",
+        "monitor",
+        "shadow_rows"
+      ],
+      "required_count": 3
+    },
+    "restore_run": {
+      "arguments": [
+        "source",
+        "out"
+      ],
+      "required_count": 2
+    },
+    "semantic_cfg": {
+      "arguments": [
+        "cfg"
+      ],
+      "required_count": 1
+    },
+    "attach_runtime": {
+      "arguments": [
+        "attack",
+        "cfg",
+        "out",
+        "store",
+        "monitor",
+        "greybox"
+      ],
+      "required_count": 5
+    },
+    "validate_resources": {
+      "arguments": [
+        "attack",
+        "greybox",
+        "shadow",
+        "cfg"
+      ],
+      "required_count": 4
+    },
+    "build_attack": {
+      "arguments": [
+        "cfg",
+        "upstream",
+        "out"
+      ],
+      "required_count": 3
+    },
+    "prepare_probes": {
+      "arguments": [
+        "attack",
+        "cfg",
+        "shadow",
+        "calibration",
+        "test",
+        "out"
+      ],
+      "required_count": 6
+    },
+    "write_json": {
+      "arguments": [
+        "path",
+        "value"
+      ],
+      "required_count": 2
+    },
+    "WeightedAnomalyMIA": {
+      "arguments": [
+        "model",
+        "tokenizer",
+        "cfg",
+        "out"
+      ],
+      "required_count": 4
+    },
+    "split_calibration": {
+      "arguments": [
+        "calibration",
+        "seed",
+        "out"
+      ],
+      "required_count": 3
+    },
+    "fit_fusion": {
+      "arguments": [
+        "fusion_fit",
+        "cfg",
+        "out"
+      ],
+      "required_count": 3
+    },
+    "add_fusion": {
+      "arguments": [
+        "frame",
+        "state"
+      ],
+      "required_count": 2
+    },
+    "freeze_thresholds": {
+      "arguments": [
+        "calibration",
+        "cfg",
+        "out"
+      ],
+      "required_count": 3
+    },
+    "evaluate_branches": {
+      "arguments": [
+        "test",
+        "cfg",
+        "out"
+      ],
+      "required_count": 3
+    },
+    "ensure_model_snapshot": {
+      "arguments": [
+        "model_id",
+        "revision",
+        "cache_dir",
+        "auto_download",
+        "reserve_gib",
+        "work_root",
+        "report_path"
+      ],
+      "required_count": 7
+    },
+    "ensure_dataset_cache": {
+      "arguments": [
+        "cfg",
+        "auto_prepare",
+        "preparation_budget_gib",
+        "reserve_gib",
+        "work_root",
+        "report_path"
+      ],
+      "required_count": 6
+    }
+  },
+  "helper_calls_checked": [
+    "install_dependencies",
+    "validate_environment",
+    "write_json",
+    "write_json",
+    "Monitor",
+    "restore_run",
+    "semantic_cfg",
+    "semantic_cfg",
+    "write_json",
+    "ensure_model_snapshot",
+    "ensure_dataset_cache",
+    "SourceStore",
+    "split_calibration",
+    "preflight",
+    "attach_runtime",
+    "install_probe_timer",
+    "build_attack",
+    "semantic_cfg",
+    "WeightedAnomalyMIA",
+    "benchmark_sersem",
+    "estimate_sersem_runtime",
+    "validate_resources",
+    "estimate_sersem_runtime",
+    "semantic_cfg",
+    "prepare_probes",
+    "fit_fusion",
+    "score_branches",
+    "add_fusion",
+    "freeze_thresholds",
+    "score_branches",
+    "score_branches",
+    "add_fusion",
+    "evaluate_branches",
+    "write_json",
+    "write_json"
+  ],
+  "runtime_limitations": "Does not verify third-party APIs, CUDA execution, package resolution, live dataset schemas, or scores."
+}

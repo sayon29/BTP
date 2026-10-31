@@ -1,0 +1,115 @@
+[
+  {
+    "path": "SERSEM-Poisoned-Chalice-Competition-2026/data/7b_train_test/shadow_dataset.parquet",
+    "bytes": 34117254,
+    "rows": 25000,
+    "schema": "content: large_string\nmembership: large_string\nlanguage: large_string\nis_member: int64\nsplit_role: large_string",
+    "values": {
+      "membership": {
+        "non-member": 12500,
+        "member": 12500
+      },
+      "language": {
+        "Go": 5000,
+        "Java": 5000,
+        "Python": 5000,
+        "Ruby": 5000,
+        "Rust": 5000
+      },
+      "split_role": {
+        "shadow_train": 15000,
+        "shadow_test": 5000,
+        "shadow_val": 5000
+      }
+    }
+  },
+  {
+    "path": "SERSEM-Poisoned-Chalice-Competition-2026/data/7b_train_test/eval_results.parquet",
+    "bytes": 33463905,
+    "rows": 25000,
+    "schema": "content: large_string\nmembership: large_string\nis_member: int64\nlanguage: large_string\nsplit_role: large_string\nlumia_score: double\nlumia_confidence_vector: list<element: double>\n  child 0, element: double",
+    "values": {
+      "membership": {
+        "non-member": 12500,
+        "member": 12500
+      },
+      "language": {
+        "Go": 5000,
+        "Java": 5000,
+        "Python": 5000,
+        "Ruby": 5000,
+        "Rust": 5000
+      },
+      "split_role": {
+        "eval": 25000
+      }
+    }
+  },
+  {
+    "path": "SERSEM-Poisoned-Chalice-Competition-2026/data/3b_train_test/shadow_dataset.parquet",
+    "bytes": 34117254,
+    "rows": 25000,
+    "schema": "content: large_string\nmembership: large_string\nlanguage: large_string\nis_member: int64\nsplit_role: large_string",
+    "values": {
+      "membership": {
+        "non-member": 12500,
+        "member": 12500
+      },
+      "language": {
+        "Go": 5000,
+        "Java": 5000,
+        "Python": 5000,
+        "Ruby": 5000,
+        "Rust": 5000
+      },
+      "split_role": {
+        "shadow_train": 15000,
+        "shadow_test": 5000,
+        "shadow_val": 5000
+      }
+    }
+  },
+  {
+    "path": "SERSEM-Poisoned-Chalice-Competition-2026/data/3b_train_test/eval_results.parquet",
+    "bytes": 33292288,
+    "error": "Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file."
+  },
+  {
+    "path": "SERSEM-Poisoned-Chalice-Competition-2026/baselines/results/results_bigcode_starcoder2-3b_20260330_232447_loss_mkp.parquet",
+    "bytes": 33524589,
+    "rows": 24995,
+    "schema": "content: large_string\nmembership: large_string\nis_member: int64\nlanguage: large_string\nloss_score: double\nmkp_score: double",
+    "values": {
+      "membership": {
+        "non-member": 12495,
+        "member": 12500
+      },
+      "language": {
+        "Java": 5000,
+        "Rust": 5000,
+        "Python": 4995,
+        "Go": 5000,
+        "Ruby": 5000
+      }
+    }
+  },
+  {
+    "path": "SERSEM-Poisoned-Chalice-Competition-2026/baselines/results/results_bigcode_starcoder2-3b_20260401_063702_pac.parquet",
+    "bytes": 33354027,
+    "rows": 24995,
+    "schema": "content: large_string\nmembership: large_string\nis_member: int64\nlanguage: large_string\npac_score: double",
+    "values": {
+      "membership": {
+        "non-member": 12495,
+        "member": 12500
+      },
+      "language": {
+        "Java": 5000,
+        "Rust": 5000,
+        "Python": 4995,
+        "Go": 5000,
+        "Ruby": 5000
+      }
+    }
+  }
+]

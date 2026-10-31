@@ -1,0 +1,177 @@
+{
+  "checked_date": "2026-10-18",
+  "repository_url": "https://github.com/Serdark4ra/SERSEM-Poisoned-Chalice-Competition-2026",
+  "branches": [
+    {
+      "name": "main",
+      "commit": {
+        "sha": "413f56040e5b4805bcf15ed794dec56bc4e16b41",
+        "url": "https://api.github.com/repos/Serdark4ra/SERSEM-Poisoned-Chalice-Competition-2026/commits/413f56040e5b4805bcf15ed794dec56bc4e16b41"
+      },
+      "protected": false
+    }
+  ],
+  "tags": [],
+  "releases": [],
+  "commits_checked": [
+    "413f56040e5b4805bcf15ed794dec56bc4e16b41",
+    "499b1f21f9e356eba4c45497efdc1e89b41ac528",
+    "b9126d7bec408eedf8c6f9a8f7fc2aca556d68ed",
+    "b28bf0f5fdc7a1fbcdf129d2eddb9af7b1d4301f",
+    "58b7ac97351ac1f128a9c6b278a17fa6b807754d",
+    "1adcc7f379f052de72cb8998086b15bf420495b5",
+    "18664b12fc030e41f4df11b6daad5f6ca764e965"
+  ],
+  "python_files_across_history": {
+    "baselines/Loss.py": "948699c77767fb8f9dcdf072bcbb30a96bcb3ea178ed1e8b5c37e185edfdf94f",
+    "baselines/MIAttack.py": "45bd8673d77c02450a7abe840bef860b240064707cb2724ef5ed609f11ee350c",
+    "baselines/MinKProbAttack.py": "659a0b66e2a752c4dfd2b377b62e8343e97fe109eda6897618bcd6a3853ea23c",
+    "baselines/Pac.py": "5ac9c3f7760ef85c4a0a78bfdb6e6d051e14ea28d18816e87c895efb833c5528",
+    "baselines/process.py": "4ed53f4bfe514f7408efcdcf53a2602b11cf90e4d9225ee15c65fe0914c0ec00",
+    "baselines/run.py": "6924f476eb4f9ae1fa680eb5aacb772e2293c98a0be8d11e34587655c7f09b56",
+    "code/ASTExtractor.py": "caadec9f6076b4918738e2f1293ab5d9285a7840f0dec373c681e8ddfaec33b1",
+    "code/LinterExtractor.py": "b82b0b92839b7bb3d46087daa852f4a98347b2ac655a441dc07f7925f6d43082",
+    "code/LumiaAttack.py": "37cc196a73cb0fffa0000291b3388c87d6ab044f2a3e0df4d493ff96e2d9af2c",
+    "code/MIAttack.py": "e276c04e6c126f9b6221d1297cd278eae5e2a73acd3241cb338c5e92d929ebe1",
+    "code/plot_results.py": "b401d441e4b0d91ad792c3254b90d27de01463b6425f806521222181b8c50b92",
+    "code/run.py": "910cf57ebc270a4a13eb939850382ec8524f17f64906e06ab89d7bd7c17a4e0a",
+    "code/transformers_compat.py": "3f3841189eed01c48e72600718e0b7558416430b9bb0fd0e55d93538b5ea7509"
+  },
+  "missing_component_name_references": [
+    {
+      "commit": "413f56040e5b4805bcf15ed794dec56bc4e16b41",
+      "file": "code/run.py",
+      "line": 189,
+      "text": "\"LinterExtractor.py\", \"WeightedAnomalyMIA.py\", \"NeighborhoodAttack.py\","
+    },
+    {
+      "commit": "413f56040e5b4805bcf15ed794dec56bc4e16b41",
+      "file": "code/run.py",
+      "line": 190,
+      "text": "\"MetaEnsembleAttack.py\""
+    },
+    {
+      "commit": "499b1f21f9e356eba4c45497efdc1e89b41ac528",
+      "file": "code/run.py",
+      "line": 189,
+      "text": "\"LinterExtractor.py\", \"WeightedAnomalyMIA.py\", \"NeighborhoodAttack.py\","
+    },
+    {
+      "commit": "499b1f21f9e356eba4c45497efdc1e89b41ac528",
+      "file": "code/run.py",
+      "line": 190,
+      "text": "\"MetaEnsembleAttack.py\""
+    },
+    {
+      "commit": "b9126d7bec408eedf8c6f9a8f7fc2aca556d68ed",
+      "file": "code/run.py",
+      "line": 189,
+      "text": "\"LinterExtractor.py\", \"WeightedAnomalyMIA.py\", \"NeighborhoodAttack.py\","
+    },
+    {
+      "commit": "b9126d7bec408eedf8c6f9a8f7fc2aca556d68ed",
+      "file": "code/run.py",
+      "line": 190,
+      "text": "\"MetaEnsembleAttack.py\""
+    },
+    {
+      "commit": "b28bf0f5fdc7a1fbcdf129d2eddb9af7b1d4301f",
+      "file": "code/run.py",
+      "line": 189,
+      "text": "\"LinterExtractor.py\", \"WeightedAnomalyMIA.py\", \"NeighborhoodAttack.py\","
+    },
+    {
+      "commit": "b28bf0f5fdc7a1fbcdf129d2eddb9af7b1d4301f",
+      "file": "code/run.py",
+      "line": 190,
+      "text": "\"MetaEnsembleAttack.py\""
+    },
+    {
+      "commit": "58b7ac97351ac1f128a9c6b278a17fa6b807754d",
+      "file": "code/run.py",
+      "line": 189,
+      "text": "\"LinterExtractor.py\", \"WeightedAnomalyMIA.py\", \"NeighborhoodAttack.py\","
+    },
+    {
+      "commit": "58b7ac97351ac1f128a9c6b278a17fa6b807754d",
+      "file": "code/run.py",
+      "line": 190,
+      "text": "\"MetaEnsembleAttack.py\""
+    },
+    {
+      "commit": "1adcc7f379f052de72cb8998086b15bf420495b5",
+      "file": "code/run.py",
+      "line": 189,
+      "text": "\"LinterExtractor.py\", \"WeightedAnomalyMIA.py\", \"NeighborhoodAttack.py\","
+    },
+    {
+      "commit": "1adcc7f379f052de72cb8998086b15bf420495b5",
+      "file": "code/run.py",
+      "line": 190,
+      "text": "\"MetaEnsembleAttack.py\""
+    },
+    {
+      "commit": "18664b12fc030e41f4df11b6daad5f6ca764e965",
+      "file": "code/run.py",
+      "line": 189,
+      "text": "\"LinterExtractor.py\", \"WeightedAnomalyMIA.py\", \"NeighborhoodAttack.py\","
+    },
+    {
+      "commit": "18664b12fc030e41f4df11b6daad5f6ca764e965",
+      "file": "code/run.py",
+      "line": 190,
+      "text": "\"MetaEnsembleAttack.py\""
+    }
+  ],
+  "lumia_source_history": [
+    "18664b12fc030e41f4df11b6daad5f6ca764e965"
+  ],
+  "figshare": {
+    "doi": "10.6084/m9.figshare.31911933",
+    "status": "uninspected: HTTP 403 for public metadata, versions, and download endpoints; DOI fallback metadata service unreachable",
+    "endpoints": [
+      "https://api.figshare.com/v2/articles/31911933",
+      "https://api.figshare.com/v2/articles/31911933/versions",
+      "https://figshare.com/ndownloader/articles/31911933/versions/1"
+    ]
+  },
+  "hf_model_repository_file_listing": [
+    {
+      "type": "file",
+      "oid": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+      "size": 1519,
+      "path": ".gitattributes"
+    },
+    {
+      "type": "file",
+      "oid": "d2003b38103d1d07b281f7c3b9cadee4c8daa922",
+      "size": 376,
+      "path": "README.md"
+    },
+    {
+      "type": "file",
+      "oid": "821186db0c2cac16fb53d217fb310d9502e66363",
+      "size": 94644994,
+      "lfs": {
+        "oid": "9aa3c8c2dddf2eaac5d685b93d1c3593f12e3d268a8c51f1376d32954f509bd4",
+        "size": 94644994,
+        "pointerSize": 133
+      },
+      "xetHash": "a0a3ea90b9f772f05b5296cdbfa778ee781f8b71c73921b4d38e4273e56f0d37",
+      "path": "probes_bigcode_starcoder2-3b.pkl"
+    },
+    {
+      "type": "file",
+      "oid": "73c9ba01dfb2d9dd40db60e3935caa0b4db81c7c",
+      "size": 151272076,
+      "lfs": {
+        "oid": "876103833bca2701f15df6b5209ab66e42f95d96bed7a3b04ed2d1edd0dabcab",
+        "size": 151272076,
+        "pointerSize": 134
+      },
+      "xetHash": "ff745b5a516e934ebb31a8be0132c0ba2b2bca26d52a1f5afc4bf8dcec517529",
+      "path": "probes_bigcode_starcoder2-7b.pkl"
+    }
+  ],
+  "conclusion": "No author grey-box source or cross-branch fusion located in accessible artifacts; supplementary archive remains unverified."
+}
