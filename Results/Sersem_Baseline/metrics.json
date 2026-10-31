@@ -1,0 +1,190 @@
+{
+  "status": "manual Kaggle execution; no published-result equivalence claim",
+  "branches": {
+    "lumia": {
+      "provenance": "unchanged upstream scoring",
+      "overall": {
+        "n": 1000,
+        "negatives": 500,
+        "auc_roc": 0.707668,
+        "tpr_at_fpr_le_1pct_roc": 0.034,
+        "calibrated_threshold_tpr": 0.022,
+        "calibrated_threshold_fpr": 0.008,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.7393,
+          "tpr_at_fpr_le_1pct_roc": 0.0,
+          "calibrated_threshold_tpr": 0.0,
+          "calibrated_threshold_fpr": 0.02,
+          "low_fpr_resolution_limited": false
+        },
+        "Java": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.6927,
+          "tpr_at_fpr_le_1pct_roc": 0.08,
+          "calibrated_threshold_tpr": 0.04,
+          "calibrated_threshold_fpr": 0.01,
+          "low_fpr_resolution_limited": false
+        },
+        "Python": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.7444000000000001,
+          "tpr_at_fpr_le_1pct_roc": 0.07,
+          "calibrated_threshold_tpr": 0.03,
+          "calibrated_threshold_fpr": 0.0,
+          "low_fpr_resolution_limited": false
+        },
+        "Ruby": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.7457,
+          "tpr_at_fpr_le_1pct_roc": 0.08,
+          "calibrated_threshold_tpr": 0.03,
+          "calibrated_threshold_fpr": 0.0,
+          "low_fpr_resolution_limited": false
+        },
+        "Rust": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.6227,
+          "tpr_at_fpr_le_1pct_roc": 0.01,
+          "calibrated_threshold_tpr": 0.01,
+          "calibrated_threshold_fpr": 0.01,
+          "low_fpr_resolution_limited": false
+        }
+      }
+    },
+    "greybox": {
+      "provenance": "Section 2.1 reconstruction",
+      "overall": {
+        "n": 1000,
+        "negatives": 500,
+        "auc_roc": 0.609768,
+        "tpr_at_fpr_le_1pct_roc": 0.016,
+        "calibrated_threshold_tpr": 0.018,
+        "calibrated_threshold_fpr": 0.018,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.6434999999999998,
+          "tpr_at_fpr_le_1pct_roc": 0.06,
+          "calibrated_threshold_tpr": 0.02,
+          "calibrated_threshold_fpr": 0.0,
+          "low_fpr_resolution_limited": false
+        },
+        "Java": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.5755000000000001,
+          "tpr_at_fpr_le_1pct_roc": 0.04,
+          "calibrated_threshold_tpr": 0.04,
+          "calibrated_threshold_fpr": 0.02,
+          "low_fpr_resolution_limited": false
+        },
+        "Python": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.616,
+          "tpr_at_fpr_le_1pct_roc": 0.01,
+          "calibrated_threshold_tpr": 0.01,
+          "calibrated_threshold_fpr": 0.02,
+          "low_fpr_resolution_limited": false
+        },
+        "Ruby": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.6056,
+          "tpr_at_fpr_le_1pct_roc": 0.01,
+          "calibrated_threshold_tpr": 0.01,
+          "calibrated_threshold_fpr": 0.03,
+          "low_fpr_resolution_limited": false
+        },
+        "Rust": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.6164,
+          "tpr_at_fpr_le_1pct_roc": 0.0,
+          "calibrated_threshold_tpr": 0.01,
+          "calibrated_threshold_fpr": 0.02,
+          "low_fpr_resolution_limited": false
+        }
+      }
+    },
+    "fusion": {
+      "provenance": "our configurable fusion experiment",
+      "overall": {
+        "n": 1000,
+        "negatives": 500,
+        "auc_roc": 0.708124,
+        "tpr_at_fpr_le_1pct_roc": 0.052,
+        "calibrated_threshold_tpr": 0.028,
+        "calibrated_threshold_fpr": 0.006,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.7421,
+          "tpr_at_fpr_le_1pct_roc": 0.01,
+          "calibrated_threshold_tpr": 0.01,
+          "calibrated_threshold_fpr": 0.02,
+          "low_fpr_resolution_limited": false
+        },
+        "Java": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.6931,
+          "tpr_at_fpr_le_1pct_roc": 0.08,
+          "calibrated_threshold_tpr": 0.05,
+          "calibrated_threshold_fpr": 0.0,
+          "low_fpr_resolution_limited": false
+        },
+        "Python": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.7444999999999999,
+          "tpr_at_fpr_le_1pct_roc": 0.1,
+          "calibrated_threshold_tpr": 0.03,
+          "calibrated_threshold_fpr": 0.0,
+          "low_fpr_resolution_limited": false
+        },
+        "Ruby": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.7462,
+          "tpr_at_fpr_le_1pct_roc": 0.06,
+          "calibrated_threshold_tpr": 0.04,
+          "calibrated_threshold_fpr": 0.0,
+          "low_fpr_resolution_limited": false
+        },
+        "Rust": {
+          "n": 200,
+          "negatives": 100,
+          "auc_roc": 0.6236999999999999,
+          "tpr_at_fpr_le_1pct_roc": 0.04,
+          "calibrated_threshold_tpr": 0.01,
+          "calibrated_threshold_fpr": 0.01,
+          "low_fpr_resolution_limited": false
+        }
+      }
+    }
+  },
+  "runtime": {
+    "current_session_seconds": 1039.5746416370002,
+    "newly_scored_examples": 1000,
+    "cached_examples": 0,
+    "examples_per_second": 0.961931890167422,
+    "note": "Measured orchestration/scoring time for this invocation, excludes earlier sessions/model setup.",
+    "observed_session_since_initialization_seconds": 7564.460583064
+  }
+}
