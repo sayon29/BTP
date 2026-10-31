@@ -16,7 +16,7 @@ def main():
             if p.is_file() and p.name!='source_manifest.json']
     upstream=json.loads((root/'shared/upstream_manifest.json').read_text())
     files+=['SERSEM-Poisoned-Chalice-Competition-2026/'+name for name in upstream['source_sha256']]
-    files+=['tests/test_infilling.py'];files=sorted(set(files))
+    files+=['tests/test_infilling.py','tests/test_kaggle_setup.py'];files=sorted(set(files))
     hashes={name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in files}
     manifest=root/'infilling_code_attack/source_manifest.json'
     manifest.write_text(json.dumps(hashes,indent=2,sort_keys=True)+'\n')

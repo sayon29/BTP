@@ -16,12 +16,12 @@ def main():
             if p.is_file() and p.name!='source_manifest.json']
     upstream=json.loads((root/'shared/upstream_manifest.json').read_text())
     files+=['SERSEM-Poisoned-Chalice-Competition-2026/'+name for name in upstream['source_sha256']]
-    files+=['tests/test_spw.py'];files=sorted(set(files))
+    files+=['tests/test_spw.py','tests/test_spw_workflow.py','tests/test_kaggle_setup.py'];files=sorted(set(files))
     hashes={name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in files}
     manifest=root/'spw_code_attack/source_manifest.json'
     manifest.write_text(json.dumps(hashes,indent=2,sort_keys=True)+'\n')
     pin=hashlib.sha256(manifest.read_bytes()).hexdigest()
-    notebook=root/'notebooks/05_spw_code.ipynb';nb=json.loads(notebook.read_text());updates=0
+    notebook=root/'notebooks/07_spw_code.ipynb';nb=json.loads(notebook.read_text());updates=0
     for cell in nb['cells']:
         if cell['cell_type']!='code':continue
         lines=''.join(cell['source']).splitlines(True)
@@ -31,6 +31,7 @@ def main():
         cell['source']=lines
     if updates!=1:raise ValueError('Require exactly one notebook source pin')
     notebook.write_text(json.dumps(nb,indent=1)+'\n')
+    (root/'notebooks/05_spw_code.ipynb').write_bytes(notebook.read_bytes())
     target=root/'notebooks/spw_kaggle_source.zip'
     with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as archive:
         for name in files+['spw_code_attack/source_manifest.json']:archive.write(root/name,name)

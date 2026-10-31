@@ -1,0 +1,608 @@
+{
+  "method_name": "Infilling Score (Raoof et al., ICLR 2025), code/128-token adaptation",
+  "method_status": "author-code-verified normalized ratio; code/domain/span/precision adaptations documented",
+  "mode": "full",
+  "preliminary": false,
+  "status": "complete",
+  "coverage": {
+    "requested": 1000,
+    "processed": 1000,
+    "valid_matched": 1000,
+    "invalid": 0,
+    "selected_valid_fraction": 1.0,
+    "original_heldout_requested": 1000,
+    "original_heldout_fraction": 1.0,
+    "by_language": {
+      "Go": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      },
+      "Java": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      },
+      "Python": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      },
+      "Ruby": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      },
+      "Rust": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      }
+    }
+  },
+  "invalid_samples": {
+    "total": 0,
+    "by_role": {},
+    "reasons": {},
+    "heldout_ids": []
+  },
+  "effective_token_counts": {
+    "by_partition": {
+      "shadow": {
+        "count": 1600.0,
+        "mean": 121.019375,
+        "std": 19.080200035121354,
+        "min": 20.0,
+        "25%": 127.0,
+        "50%": 127.0,
+        "75%": 127.0,
+        "max": 127.0
+      },
+      "validation": {
+        "count": 200.0,
+        "mean": 121.455,
+        "std": 17.386183360913222,
+        "min": 30.0,
+        "25%": 127.0,
+        "50%": 127.0,
+        "75%": 127.0,
+        "max": 127.0
+      },
+      "calibration": {
+        "count": 200.0,
+        "mean": 122.055,
+        "std": 18.81039953465282,
+        "min": 25.0,
+        "25%": 127.0,
+        "50%": 127.0,
+        "75%": 127.0,
+        "max": 127.0
+      },
+      "heldout": {
+        "count": 1000.0,
+        "mean": 121.646,
+        "std": 18.494830162581692,
+        "min": 20.0,
+        "25%": 127.0,
+        "50%": 127.0,
+        "75%": 127.0,
+        "max": 127.0
+      }
+    }
+  },
+  "deployed_calibrated_threshold": {
+    "status": "calibrated",
+    "source_role": "calibration",
+    "threshold": -0.09758872799558502,
+    "target_fpr": 0.01,
+    "direction": "higher_is_member",
+    "calibration_manifest": "ef5f5516d4449fa8a7a55f57f0af42efa70167374912bd3da6a6d18bee3fa33a",
+    "calibration_tpr": 0.07,
+    "calibration_fpr": 0.01,
+    "negatives": 100,
+    "members": 100,
+    "overall": {
+      "tpr": 0.07,
+      "fpr": 0.06
+    },
+    "by_language": {
+      "Go": {
+        "tpr": 0.09,
+        "fpr": 0.07
+      },
+      "Java": {
+        "tpr": 0.13,
+        "fpr": 0.07
+      },
+      "Python": {
+        "tpr": 0.02,
+        "fpr": 0.02
+      },
+      "Ruby": {
+        "tpr": 0.02,
+        "fpr": 0.04
+      },
+      "Rust": {
+        "tpr": 0.09,
+        "fpr": 0.1
+      }
+    }
+  },
+  "heldout_diagnostic_roc_only": {
+    "infilling_score": {
+      "overall": {
+        "n": 1000,
+        "negatives": 500,
+        "members": 500,
+        "auc_roc": 0.5318039999999999,
+        "tpr_at_fpr_le_1pct": 0.014,
+        "achieved_fpr": 0.006,
+        "diagnostic_roc_threshold": -0.0004600829753588062,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.5657,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": false
+        },
+        "Java": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.5827999999999999,
+          "tpr_at_fpr_le_1pct": 0.03,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.0,
+          "low_fpr_resolution_limited": false
+        },
+        "Python": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.4992,
+          "tpr_at_fpr_le_1pct": 0.02,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": -0.07865614180059706,
+          "low_fpr_resolution_limited": false
+        },
+        "Ruby": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.5212,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": false
+        },
+        "Rust": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.4963,
+          "tpr_at_fpr_le_1pct": 0.01,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": -0.021616792693488124,
+          "low_fpr_resolution_limited": false
+        }
+      }
+    },
+    "static_sersem_score": {
+      "overall": {
+        "n": 1000,
+        "negatives": 500,
+        "members": 500,
+        "auc_roc": 0.609768,
+        "tpr_at_fpr_le_1pct": 0.016,
+        "achieved_fpr": 0.008,
+        "diagnostic_roc_threshold": 0.9995988011360168,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6434999999999998,
+          "tpr_at_fpr_le_1pct": 0.06,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9991692900657654,
+          "low_fpr_resolution_limited": false
+        },
+        "Java": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.5755000000000001,
+          "tpr_at_fpr_le_1pct": 0.04,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9995988011360168,
+          "low_fpr_resolution_limited": false
+        },
+        "Python": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.616,
+          "tpr_at_fpr_le_1pct": 0.01,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9996688365936279,
+          "low_fpr_resolution_limited": false
+        },
+        "Ruby": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6056,
+          "tpr_at_fpr_le_1pct": 0.01,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9996764659881592,
+          "low_fpr_resolution_limited": false
+        },
+        "Rust": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6164,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": false
+        }
+      }
+    },
+    "adaptive_sersem_score": {
+      "overall": {
+        "n": 1000,
+        "negatives": 500,
+        "members": 500,
+        "auc_roc": 0.611356,
+        "tpr_at_fpr_le_1pct": 0.014,
+        "achieved_fpr": 0.008,
+        "diagnostic_roc_threshold": 0.9995992255225776,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.649,
+          "tpr_at_fpr_le_1pct": 0.06,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9991484560074194,
+          "low_fpr_resolution_limited": false
+        },
+        "Java": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.5761000000000001,
+          "tpr_at_fpr_le_1pct": 0.04,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9995922008418052,
+          "low_fpr_resolution_limited": false
+        },
+        "Python": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6161,
+          "tpr_at_fpr_le_1pct": 0.01,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9996693530337554,
+          "low_fpr_resolution_limited": false
+        },
+        "Ruby": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6019,
+          "tpr_at_fpr_le_1pct": 0.01,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9997967542956119,
+          "low_fpr_resolution_limited": false
+        },
+        "Rust": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6225,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": false
+        }
+      }
+    },
+    "lumia_score": {
+      "overall": {
+        "n": 1000,
+        "negatives": 500,
+        "members": 500,
+        "auc_roc": 0.707668,
+        "tpr_at_fpr_le_1pct": 0.034,
+        "achieved_fpr": 0.01,
+        "diagnostic_roc_threshold": 0.9982473492622376,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.7393,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": false
+        },
+        "Java": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6927,
+          "tpr_at_fpr_le_1pct": 0.08,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9974700570106506,
+          "low_fpr_resolution_limited": false
+        },
+        "Python": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.7444000000000001,
+          "tpr_at_fpr_le_1pct": 0.07,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9945974230766297,
+          "low_fpr_resolution_limited": false
+        },
+        "Ruby": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.7457,
+          "tpr_at_fpr_le_1pct": 0.08,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9945404648780822,
+          "low_fpr_resolution_limited": false
+        },
+        "Rust": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6227,
+          "tpr_at_fpr_le_1pct": 0.01,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9990509271621704,
+          "low_fpr_resolution_limited": false
+        }
+      }
+    },
+    "fusion_score": {
+      "overall": {
+        "n": 1000,
+        "negatives": 500,
+        "members": 500,
+        "auc_roc": 0.708124,
+        "tpr_at_fpr_le_1pct": 0.052,
+        "achieved_fpr": 0.01,
+        "diagnostic_roc_threshold": 0.9971552789211273,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.7421,
+          "tpr_at_fpr_le_1pct": 0.01,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9983168125152588,
+          "low_fpr_resolution_limited": false
+        },
+        "Java": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6931,
+          "tpr_at_fpr_le_1pct": 0.08,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.996763801574707,
+          "low_fpr_resolution_limited": false
+        },
+        "Python": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.7444999999999999,
+          "tpr_at_fpr_le_1pct": 0.1,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9937099158763886,
+          "low_fpr_resolution_limited": false
+        },
+        "Ruby": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.7462,
+          "tpr_at_fpr_le_1pct": 0.06,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9964920818805695,
+          "low_fpr_resolution_limited": false
+        },
+        "Rust": {
+          "n": 200,
+          "negatives": 100,
+          "members": 100,
+          "auc_roc": 0.6236999999999999,
+          "tpr_at_fpr_le_1pct": 0.04,
+          "achieved_fpr": 0.01,
+          "diagnostic_roc_threshold": 0.9972745716571808,
+          "low_fpr_resolution_limited": false
+        }
+      }
+    }
+  },
+  "paired_differences": {
+    "overall": {
+      "static_sersem_score": {
+        "auc_delta_infilling_minus_baseline": -0.07796400000000003,
+        "diagnostic_tpr_delta": -0.002
+      },
+      "adaptive_sersem_score": {
+        "auc_delta_infilling_minus_baseline": -0.07955200000000007,
+        "diagnostic_tpr_delta": 0.0
+      },
+      "lumia_score": {
+        "auc_delta_infilling_minus_baseline": -0.17586400000000002,
+        "diagnostic_tpr_delta": -0.020000000000000004
+      },
+      "fusion_score": {
+        "auc_delta_infilling_minus_baseline": -0.17632000000000003,
+        "diagnostic_tpr_delta": -0.038
+      }
+    },
+    "by_language": {
+      "Go": {
+        "static_sersem_score": {
+          "auc_delta_infilling_minus_baseline": -0.07779999999999987,
+          "diagnostic_tpr_delta": -0.06
+        },
+        "adaptive_sersem_score": {
+          "auc_delta_infilling_minus_baseline": -0.08330000000000004,
+          "diagnostic_tpr_delta": -0.06
+        },
+        "lumia_score": {
+          "auc_delta_infilling_minus_baseline": -0.17359999999999998,
+          "diagnostic_tpr_delta": 0.0
+        },
+        "fusion_score": {
+          "auc_delta_infilling_minus_baseline": -0.1764,
+          "diagnostic_tpr_delta": -0.01
+        }
+      },
+      "Java": {
+        "static_sersem_score": {
+          "auc_delta_infilling_minus_baseline": 0.007299999999999751,
+          "diagnostic_tpr_delta": -0.010000000000000002
+        },
+        "adaptive_sersem_score": {
+          "auc_delta_infilling_minus_baseline": 0.006699999999999817,
+          "diagnostic_tpr_delta": -0.010000000000000002
+        },
+        "lumia_score": {
+          "auc_delta_infilling_minus_baseline": -0.10990000000000011,
+          "diagnostic_tpr_delta": -0.05
+        },
+        "fusion_score": {
+          "auc_delta_infilling_minus_baseline": -0.11030000000000018,
+          "diagnostic_tpr_delta": -0.05
+        }
+      },
+      "Python": {
+        "static_sersem_score": {
+          "auc_delta_infilling_minus_baseline": -0.11680000000000001,
+          "diagnostic_tpr_delta": 0.01
+        },
+        "adaptive_sersem_score": {
+          "auc_delta_infilling_minus_baseline": -0.1169,
+          "diagnostic_tpr_delta": 0.01
+        },
+        "lumia_score": {
+          "auc_delta_infilling_minus_baseline": -0.24520000000000008,
+          "diagnostic_tpr_delta": -0.05
+        },
+        "fusion_score": {
+          "auc_delta_infilling_minus_baseline": -0.24529999999999996,
+          "diagnostic_tpr_delta": -0.08
+        }
+      },
+      "Ruby": {
+        "static_sersem_score": {
+          "auc_delta_infilling_minus_baseline": -0.08440000000000003,
+          "diagnostic_tpr_delta": -0.01
+        },
+        "adaptive_sersem_score": {
+          "auc_delta_infilling_minus_baseline": -0.0807,
+          "diagnostic_tpr_delta": -0.01
+        },
+        "lumia_score": {
+          "auc_delta_infilling_minus_baseline": -0.22450000000000003,
+          "diagnostic_tpr_delta": -0.08
+        },
+        "fusion_score": {
+          "auc_delta_infilling_minus_baseline": -0.22499999999999998,
+          "diagnostic_tpr_delta": -0.06
+        }
+      },
+      "Rust": {
+        "static_sersem_score": {
+          "auc_delta_infilling_minus_baseline": -0.12009999999999993,
+          "diagnostic_tpr_delta": 0.01
+        },
+        "adaptive_sersem_score": {
+          "auc_delta_infilling_minus_baseline": -0.12620000000000003,
+          "diagnostic_tpr_delta": 0.01
+        },
+        "lumia_score": {
+          "auc_delta_infilling_minus_baseline": -0.1264,
+          "diagnostic_tpr_delta": 0.0
+        },
+        "fusion_score": {
+          "auc_delta_infilling_minus_baseline": -0.1273999999999999,
+          "diagnostic_tpr_delta": -0.03
+        }
+      }
+    }
+  },
+  "timing": {
+    "method_name": "Infilling Score (Raoof et al., ICLR 2025), code/128-token adaptation",
+    "method_status": "author-code-verified normalized ratio; code/domain/span/precision adaptations documented",
+    "statistic": "pinned-author-normalization; paper Eqs 9-11; code/span adaptation",
+    "session_wall_seconds": 3660.6064712039997,
+    "session_wall_seconds_per_example": 1.2202021575113333,
+    "session_transformer_forward_calls": 28279,
+    "session_transformer_calls_per_example": 9.426333333333334,
+    "session_head_forward_calls": 36889,
+    "session_model_seconds": 2966.4523709949935,
+    "mean_session_seconds_per_example": 1.2120191545606658,
+    "mean_cached_result_computation_seconds": 1.2120191545606658,
+    "cached_samples": 0,
+    "samples": 3000,
+    "persistent_call_audit": {
+      "transformer_forward_calls": 28279,
+      "lm_head_forward_calls": 36889,
+      "model_seconds": 2966.4523709949935,
+      "interrupted_unaccounted_operations": 0,
+      "malformed_log_lines": 0,
+      "exact_accounting": true
+    },
+    "timing_note": "Cached result timing excludes work before interrupted partial-sample recovery. Persistent audit counts all recorded attempts; hard-killed unfinished operations are explicitly unknown. Cache import does not import historic call logs."
+  },
+  "comparisons": {
+    "adaptive_sersem_included": true,
+    "paired_methods": [
+      "infilling_score",
+      "static_sersem_score",
+      "adaptive_sersem_score",
+      "lumia_score",
+      "fusion_score"
+    ]
+  },
+  "limitations": [
+    "Code/domain, 128-token span and FP16/FP64 arithmetic adaptations; no benchmark-result equivalence claim",
+    "Adaptive comparison is omitted when no exact-identity adaptive score file is attached",
+    "Pinned author-code context-specific normalization and end handling, not literal Appendix D pseudocode typos",
+    "Invalid IDs are retained in scores/coverage; all five comparisons use exactly the same explicitly valid cohort",
+    "Diagnostic held-out ROC thresholds never deploy; no direction or parameter search",
+    "Baseline scores retain their original spans; identities match, analysis spans differ",
+    "Low-FPR and per-language smoke estimates are empirically coarse"
+  ]
+}

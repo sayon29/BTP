@@ -1,0 +1,45 @@
+{
+  "access_date": "2026-10-31",
+  "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/5709163243753c9c9ab7f4b4e5a8766d-Paper-Conference.pdf",
+  "paper_read": [
+    "Sections 3.1, 3.2 (Eqs 5-12)",
+    "Section 4.4.1 (m=5 for longer sequences, k=20%)",
+    "Appendix A parameter tables",
+    "Appendix C precision/compute",
+    "Appendix D Algorithm 1"
+  ],
+  "author_repository": "https://github.com/neginraoof/infilling-score",
+  "author_commit": "54ee252e378afffe09f4dbde5c2ca3adbf8ccfe0",
+  "author_files": {
+    "README.md": {
+      "git_blob_sha1": "69b7df5892806623aed30114286b6dc6d7267e58",
+      "url": "https://github.com/neginraoof/infilling-score/blob/54ee252e378afffe09f4dbde5c2ca3adbf8ccfe0/README.md"
+    },
+    "infilling_score/optimizations/infill.py": {
+      "git_blob_sha1": "4cc654882a9cc4d036674050d41f0a736370541f",
+      "url": "https://github.com/neginraoof/infilling-score/blob/54ee252e378afffe09f4dbde5c2ca3adbf8ccfe0/infilling_score/optimizations/infill.py"
+    },
+    "infilling_score/models/detector.py": {
+      "git_blob_sha1": "9fd170b0fee269a1f30a2df62b6c75dfeae30493",
+      "url": "https://github.com/neginraoof/infilling-score/blob/54ee252e378afffe09f4dbde5c2ca3adbf8ccfe0/infilling_score/models/detector.py"
+    },
+    "infilling_score/utils/constants.py": {
+      "git_blob_sha1": "c0b81e55f24060ecd5bbeb7cb07aa75b682a94d9",
+      "url": "https://github.com/neginraoof/infilling-score/blob/54ee252e378afffe09f4dbde5c2ca3adbf8ccfe0/infilling_score/utils/constants.py"
+    }
+  },
+  "decisions": [
+    "Follow pinned author-code separate original/altered context moments to interpret Eq 10; Appendix D reuses i moments in future loop, while author code uses each future prefix.",
+    "Follow Eq 11 and author analyze_text arithmetic bottom-k mean, not Appendix D's missing divisor.",
+    "Use main experiment m=5,k=20%; Appendix A says 10% can work best but no new search is performed.",
+    "Future positions exactly translate author range(i,min(i+m,N-3)); final input token is never a future term, final two targets have no future terms.",
+    "Reject bottom_count=0 or nonfinite sample scores as explicit invalid rows instead of author error/fallback zeros.",
+    "Use author min_sigma=1e-6, no optional log-probability/score clipping. Stable central FP64 moments and FP16 model are numerical adaptations.",
+    "First 128 baseline-encoded IDs, non-special/nonempty-offset scoring targets are code-domain selection adaptations."
+  ],
+  "limitations": [
+    "Paper-to-code notation/index/pseudocode discrepancies prevent claiming literal agreement with every printed pseudocode line.",
+    "Full PDF text retrieved; PDF screenshot rendering failed and local PDF download was unavailable. Author source was inspected to resolve indexing.",
+    "No original WikiMIA/MIMIR benchmark equivalence or StarCoder2 runtime result claimed."
+  ]
+}

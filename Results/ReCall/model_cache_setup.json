@@ -1,0 +1,37 @@
+{
+  "model_id": "bigcode/starcoder2-3b",
+  "revision": "733247c55e3f73af49ce8e9c7949bf14af205928",
+  "cache_dir": "/kaggle/working/hf_cache/hub",
+  "status": "ready",
+  "reserve_gib": 3.0,
+  "required_files": [
+    "config.json",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "special_tokens_map.json",
+    "vocab.json",
+    "merges.txt",
+    "model.safetensors"
+  ],
+  "missing_files": [
+    "config.json",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "special_tokens_map.json",
+    "vocab.json",
+    "merges.txt",
+    "model.safetensors"
+  ],
+  "missing_bytes": 12124828705,
+  "download_headroom_bytes": 268435456,
+  "reused_complete_cache": false,
+  "files": {
+    "config.json": 700,
+    "tokenizer.json": 2060919,
+    "tokenizer_config.json": 7877,
+    "special_tokens_map.json": 958,
+    "vocab.json": 777202,
+    "merges.txt": 441705,
+    "model.safetensors": 12121539344
+  }
+}

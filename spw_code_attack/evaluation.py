@@ -43,20 +43,25 @@ def evaluate(scored, selected, static_scores, adaptive_scores, out, mode, timing
     validate_partitions(selected, COUNTS if mode=='full' else SMOKE_SIZES)
     held = selected['heldout']
     all_ids = set().union(*(set(f.sample_id) for f in selected.values()))
-    if set(scored.sample_id)!=all_ids or scored.sample_id.duplicated().any():
-        raise ValueError('Require complete selected cohort, no dropped or extra IDs')
+    required_ids = set(selected['calibration'].sample_id) | set(held.sample_id)
+    if (not required_ids <= set(scored.sample_id) <= all_ids
+            or scored.sample_id.duplicated().any()):
+        raise ValueError('Require complete calibration/heldout cohorts, no unknown or duplicate IDs')
     calibration = exact_match(selected['calibration'],scored,['spw_inspired_score'])
     threshold = calibrate(calibration)
     write_json(Path(out)/'threshold.json',threshold)
     matched = exact_match(held,scored,['spw_inspired_score'])
     static = match_scores(held,static_scores)
-    adaptive = exact_match(held,adaptive_scores,['adaptive_score'])
+    adaptive = exact_match(held,adaptive_scores,['adaptive_score']) if adaptive_scores is not None else None
     matched['static_sersem_score'] = static.greybox_score.to_numpy()
     matched['lumia_score'] = static.lumia_score.to_numpy()
     matched['fusion_score'] = static.fusion_score.to_numpy()
-    matched['adaptive_sersem_score'] = adaptive.adaptive_score.to_numpy()
+    if adaptive is not None:
+        matched['adaptive_sersem_score'] = adaptive.adaptive_score.to_numpy()
     matched['spw_inspired_predicted_member'] = matched.spw_inspired_score>=threshold['threshold']
-    columns = ['spw_inspired_score','static_sersem_score','adaptive_sersem_score','lumia_score','fusion_score']
+    columns = ['spw_inspired_score','static_sersem_score','lumia_score','fusion_score']
+    if adaptive is not None:
+        columns.append('adaptive_sersem_score')
     diagnostic = metric_report(matched,columns)
     def deployed(group):
         y = group.is_member.to_numpy(); p = group.spw_inspired_predicted_member.to_numpy()
@@ -70,6 +75,7 @@ def evaluate(scored, selected, static_scores, adaptive_scores, out, mode, timing
                    'diagnostic_tpr_delta_spw_inspired_minus_baseline':ref['tpr_at_fpr_le_1pct']-metrics[c]['overall']['tpr_at_fpr_le_1pct']}
                 for c in columns[1:]}
     report = dict(method_name=METHOD_NAME,method_status=METHOD_STATUS,paper_faithful=False,
+        adaptive_comparison_included=adaptive is not None,
         timing=timing or {},mode=mode,preliminary=mode=='smoke',
         coverage=dict(selected_requested=len(held),matched=len(matched),selected_fraction=len(matched)/len(held),
                       original_heldout_requested=1000,original_heldout_fraction=len(matched)/1000,

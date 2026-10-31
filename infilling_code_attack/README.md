@@ -96,11 +96,11 @@ Required saved baseline files:
 | Calibration | threshold_calibration_manifest.parquet | 200 | 20 |
 | Held-out | heldout_test_manifest.parquet | 1000 | 30 |
 
-Also attach baseline `config.json`, `heldout_test_scores.parquet`, and adaptive `heldout_adaptive_scores.parquet`. Complete originals are validated before smoke selection. Exact source-row/sample ID, content hash, language, role, membership and train/test disjointness checks remain active. No new split generation. Seed 42 balances smoke rows by language and membership, independently of inference labels. Full preserves every original row/order. The saved adaptive smoke seed can differ: full adaptive scores are recommended to cover all selected seed-42 IDs. Missing baseline/adaptive identities fail before inference, not via a silent inner join.
+Also attach baseline `config.json` and `heldout_test_scores.parquet`. Adaptive `heldout_adaptive_scores.parquet` is optional; when supplied or uniquely found, its exact IDs/content/language/labels are checked before inference. Complete originals are validated before smoke selection. Exact source-row/sample ID, content hash, language, role, membership and train/test disjointness checks remain active. No new split generation. Seed 42 balances smoke rows by language and membership, independently of inference labels. Full preserves every original row/order. The saved adaptive smoke seed can differ; full adaptive scores are recommended for a complete adaptive comparison, but their absence never blocks inference.
 
 Source access is streaming or existing cached Arrow, bounded to needed source identities and stopping after they are found. Streaming can traverse earlier rows/shards to reach a saved source position; no full train-dataset preparation/download is forced. Content SHA256 is checked against manifests. Complete cached span plans skip source access. No baseline scalar loss or token statistics are assumed compatible with this attack.
 
-Notebook setup mirrors working notebook 03: verified portable ZIP/extracted source before imports, protected numerical/CUDA packages, the same pinned dependency specification and exact saved baseline/API-version equality. Model cache preparation is explicit and disk checked. Default model download is disabled. Enable T4 and Internet when streaming. Actual T4 model execution and throughput remain unmeasured until the notebook runs; full mode can need saved-output resume across sessions.
+Notebook setup uses the corrected ReCaLL v2 helper: source ZIP or extracted tree is discovered and hash-verified before imports; environment flags are set before the installer; only missing or incompatible exact lock entries are installed. The complete 33-package lock equals the saved baseline configuration, including `torch==2.11.0+cu128`, `torchvision==0.26.0+cu128`, `torchaudio==2.11.0+cu128`, `triton==3.6.0` and `transformers==4.52.4`. Correct versions are left untouched; the cu128 index is used only when a Torch-family pin is wrong. CUDA availability and the full baseline package-version dictionary are checked before loading manifests or the model. A restart is requested only if pip changes an already-loaded module; after restarting, satisfied pins make the next setup run a no-op. Model cache preparation is explicit and disk checked. Default model download is disabled. Enable Tesla T4 and Internet for streaming. Actual T4 execution and throughput remain unmeasured until the notebook runs; full mode can need saved-output resume across sessions.
 
 ## Checkpoint and resource behavior
 
@@ -116,9 +116,9 @@ Threshold selection uses only valid calibration rows and empirical FPR <=1%, max
 
 `heldout_diagnostic_roc_only` reports ROC-AUC, maximum TPR at FPR <=1%, achieved FPR and diagnostic thresholds; these held-out-label diagnostics never deploy, flip sign or select a score. Per-language ROC/AUC and calibrated TPR/FPR are separate. Smoke/per-language low-FPR estimates are coarse, with resolution flags in ROC reports.
 
-All saved held-out identities must have baseline and adaptive scores **before** any explicit invalid filtering. Pair Infilling, static SERSEM (`greybox_score`), adaptive (`adaptive_score`), LUMIA and saved fusion on the exact same valid IDs/content/labels. Report paired metric differences without an implied significance claim. The saved baseline methods retain their original analysis spans, while this attack uses 128 IDs. Identity pairing does not imply span equivalence.
+All saved held-out identities must have static baseline scores **before** any explicit invalid filtering. When adaptive scores are attached, they also require exact identity coverage. Pair Infilling, static SERSEM (`greybox_score`), LUMIA and saved fusion on the exact same valid IDs/content/labels; add adaptive (`adaptive_score`) on that same cohort only when available. Report paired metric differences without an implied significance claim. The saved baseline methods retain their original analysis spans, while this attack uses 128 IDs. Identity pairing does not imply span equivalence.
 
-Full processes 1000/1000 held-out rows. Coverage separately reports processed, valid matched, invalid and per-language counts. Invalid score rows stay in `infilling_scores.parquet`, and all five methods use the same explicitly reported valid cohort. AUC is unavailable if valid labels lack both classes; no scores or performance are fabricated. Smoke processes 30 selected held-out rows and reports its fraction of the original 1000. All selected development/validation/calibration rows also receive a result, without fitting or method selection.
+Full processes 1000/1000 held-out rows. Coverage separately reports processed, valid matched, invalid and per-language counts. Invalid score rows stay in `infilling_scores.parquet`, and every included comparison method uses the same explicitly reported valid cohort. AUC is unavailable if valid labels lack both classes; no scores or performance are fabricated. Smoke processes 30 selected held-out rows and reports its fraction of the original 1000. All selected development/validation/calibration rows also receive a result, without fitting or method selection.
 
 Manual Kaggle execution produces:
 
@@ -136,16 +136,18 @@ From repository root:
 ```bash
 python3 -m infilling_code_attack.package_source
 python3 -m unittest discover -s tests -p test_infilling.py -v
+python3 -m unittest discover -s tests -p test_kaggle_setup.py -v
 ```
 
-Upload `notebooks/infilling_kaggle_source.zip` as a Kaggle Dataset. Import `notebooks/06_infilling_code.ipynb`, enable Tesla T4, attach source/baseline/adaptive/model cache Datasets, and run cells in order. The source manifest and notebook pin are rebuilt together; only notebook 06's pin is modified. Rebuild after editing this package/spec/tests/README.
+Upload `notebooks/infilling_kaggle_source.zip` as a Kaggle Dataset. Import `notebooks/06_infilling_code.ipynb`, enable Tesla T4, attach the baseline and model cache Datasets, and run cells in order. The source can be mounted as the ZIP or extracted files. `UPLOAD_SOURCE` and `UPLOAD_ZIP` are blank by default for unique source discovery; set either to the actual mounted path if there are multiple matches. The baseline path defaults to `/kaggle/input/datasets/sayonsujitmondal/sersem-baseline-1000-results3`; edit `BASELINE_RUN` if Kaggle mounted it elsewhere. Adaptive scores are optional. The notebook's last cell checks required outputs and SQLite integrity, then archives all of `OUT` to `WORK_ROOT / f'{RUN_ID}.zip'`.
 
 Common first-cell paths:
 
 ```python
-UPLOAD_SOURCE = INPUT_ROOT / 'your-infilling-source-dataset'
-BASELINE_RUN = '/kaggle/input/your-baseline-dataset/path/to/run'
-ADAPTIVE_SCORES = '/kaggle/input/your-adaptive-dataset/path/heldout_adaptive_scores.parquet'
+UPLOAD_SOURCE = ''  # optional exact extracted source Dataset directory
+UPLOAD_ZIP = ''  # optional exact ZIP path; otherwise unique discovery
+BASELINE_RUN = '/kaggle/input/datasets/sayonsujitmondal/sersem-baseline-1000-results3'
+ADAPTIVE_SCORES = ''  # optional; inference works without adaptive scores
 MODEL_CACHE_DIR = '/kaggle/input/your-model-cache'  # HF cache root, as in notebook 03
 SOURCE_ACCESS = 'streaming'
 MODEL_LOCAL_FILES_ONLY = True
@@ -154,14 +156,14 @@ DISK_RESERVE_GIB = 3.
 SESSION_BUDGET_MINUTES = 480
 ```
 
-An empty model cache path inherits the baseline path. Intentionally downloading the pinned target on Kaggle requires `ALLOW_MODEL_DOWNLOAD=True`; the helper then verifies a local snapshot. For offline source access use `SOURCE_ACCESS='cached'` and an existing Arrow `DATASET_CACHE_DIR`. Ambiguous saved runs require explicit `BASELINE_RUN`/`PATH_OVERRIDES`; ambiguous adaptive files require `ADAPTIVE_SCORES`.
+An empty model cache path inherits the baseline path. Intentionally downloading the pinned target on Kaggle requires `ALLOW_MODEL_DOWNLOAD=True`; the helper then verifies a local snapshot. For offline source access use `SOURCE_ACCESS='cached'` and an existing Arrow `DATASET_CACHE_DIR`. Ambiguous saved runs require explicit `BASELINE_RUN`/`PATH_OVERRIDES`; ambiguous adaptive files are omitted unless `ADAPTIVE_SCORES` is set.
 
 Smoke:
 
 ```python
 MODE = 'smoke'
 SMOKE_SIZES = dict(shadow=80, validation=20, calibration=20, heldout=30)
-RUN_ID = f'infilling-code-{MODE}-v1'
+RUN_ID = f'infilling-code-{MODE}-v2'
 RESUME_FROM = ''
 CACHE_REUSE_FROM = ''
 ```
@@ -170,12 +172,12 @@ Full:
 
 ```python
 MODE = 'full'
-RUN_ID = f'infilling-code-{MODE}-v1'
+RUN_ID = f'infilling-code-{MODE}-v2'
 RESUME_FROM = ''
 CACHE_REUSE_FROM = ''  # optionally point to saved smoke infilling_cache.sqlite
 ```
 
-Re-execute the configuration cell after changing MODE so OUT updates. Full requires saved adaptive scores for every original held-out ID. Same-run recovery sets `RESUME_FROM` to attached saved OUT with the same mode/RUN_ID/configuration. Smoke-to-full uses a new full run and `CACHE_REUSE_FROM` rather than RESUME_FROM. Seed 42, contiguous span 128, future tokens 5, bottom fraction .2, normalization, boundaries and direction are frozen in the hashed specification; no grid is supplied.
+Re-execute the configuration cell after changing MODE so OUT updates. Full adaptive comparison is optional. Same-run recovery sets `RESUME_FROM` to attached saved OUT with the same mode/RUN_ID/configuration. Smoke-to-full uses a new full run and `CACHE_REUSE_FROM` rather than RESUME_FROM. Seed 42, contiguous span 128, future tokens 5, bottom fraction .2, normalization, boundaries and direction are frozen in the hashed specification; no grid is supplied.
 
 Package structure: `method.py` (derivation/reference), `inference.py` (GPU sufficient statistics), `engine.py` (query/result checkpoints), `data.py` (span plans), `evaluation.py`, `runner.py`, `cache.py`, `package_source.py`, `__init__.py`, requirements and hashed JSON specifications/provenance.
 

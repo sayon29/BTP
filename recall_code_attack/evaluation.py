@@ -49,13 +49,15 @@ def evaluate(scored, selected, static_scores, adaptive_scores, out, mode):
     write_json(Path(out)/'threshold.json',threshold)
     matched = exact_match(held,scored,['recall_score'])
     static = match_scores(held,static_scores)
-    adaptive = exact_match(held,adaptive_scores,['adaptive_score'])
     matched['static_sersem_score'] = static.greybox_score.to_numpy()
     matched['lumia_score'] = static.lumia_score.to_numpy()
     matched['fusion_score'] = static.fusion_score.to_numpy()
-    matched['adaptive_sersem_score'] = adaptive.adaptive_score.to_numpy()
     matched['recall_predicted_member'] = matched.recall_score>=threshold['threshold']
-    columns = ['recall_score','static_sersem_score','adaptive_sersem_score','lumia_score','fusion_score']
+    columns = ['recall_score','static_sersem_score','lumia_score','fusion_score']
+    if adaptive_scores is not None:
+        adaptive = exact_match(held,adaptive_scores,['adaptive_score'])
+        matched['adaptive_sersem_score'] = adaptive.adaptive_score.to_numpy()
+        columns.insert(2, 'adaptive_sersem_score')
     diagnostic = metric_report(matched,columns)
     def deployed(group):
         y = group.is_member.to_numpy(); p = group.recall_predicted_member.to_numpy()
@@ -77,7 +79,10 @@ def evaluate(scored, selected, static_scores, adaptive_scores, out, mode):
         heldout_diagnostic_roc_only=diagnostic,
         paired_differences=dict(overall=differences(matched),by_language={l:differences(g) for l,g in matched.groupby('language')}),
         fpr_resolution=dict(calibration=1/threshold['negatives'],heldout=1/int(sum(matched.is_member==0))),
+        comparisons=dict(adaptive_sersem_included='adaptive_sersem_score' in columns,
+            paired_methods=columns),
         limitations=['Code/prefix/identical-mask adaptation, no paper-result equivalence claim',
+                     'Adaptive comparison is omitted when no exact-identity adaptive score file is attached',
                      'Held-out ROC thresholds are diagnostics only, never deployed thresholds',
                      'Prefix overlap screening excludes fixed exact n-grams; cannot certify semantic unrelatedness',
                      'Saved non-member labels are assumed valid; no independent pretraining membership proof',

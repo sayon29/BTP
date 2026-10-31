@@ -10,8 +10,14 @@ from spw_code_attack.cache import sample_identity
 from spw_code_attack import METHOD_NAME, METHOD_STATUS
 
 
+FROZEN_SPEC_SHA256 = 'b1b2fa359faebed5dbde24deef6eb9326010af421f6083a8e15dcaeade1db607'
+
+
 def fixed_configuration():
-    return json.loads(Path(__file__).with_name('reproducibility.json').read_text())
+    path = Path(__file__).with_name('reproducibility.json')
+    if hashlib.sha256(path.read_bytes()).hexdigest() != FROZEN_SPEC_SHA256:
+        raise ValueError('Frozen scientific configuration changed; requires a reviewed new experiment')
+    return json.loads(path.read_text())
 
 
 def scoring_identity(cfg,tokenizer,model_config,sources):

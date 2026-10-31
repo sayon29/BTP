@@ -3,17 +3,73 @@
   "doi": "https://doi.org/10.1016/j.knosys.2026.116100",
   "title": "Shortening the prefix! Members and non-members exhibit divergent behavior",
   "publisher_preview": "https://www.sciencedirect.com/science/article/abs/pii/S0950705126008269",
-  "retrieved": ["Abstract", "Introduction", "Highlights", "Methodology section outline only (3.1 through 3.5)", "Conclusion excerpt"],
-  "unavailable": ["Complete method sections 3.3, 3.4 and 3.5", "All numbered method equations", "Algorithms/pseudocode", "Exact dynamic shortening acceptance, stopping and selection criteria", "Exact token weight definition/normalization", "Exact distribution divergence definition, orientation and score combination", "Published recommended/default hyperparameters", "Original experimental context lengths", "Author source implementation"],
-  "attempts": [
-    {"url": "https://doi.org/10.1016/j.knosys.2026.116100", "outcome": "Preview indexed; direct DOI redirect fetch inaccessible"},
-    {"url": "https://www.sciencedirect.com/science/article/pii/S0950705126008269", "outcome": "403 Forbidden"},
-    {"url": "https://www.sciencedirect.com/science/article/pii/S0950705126008269/pdfft", "outcome": "PDF not retrievable"},
-    {"url": "https://api.elsevier.com/content/article/pii/S0950705126008269?httpAccept=text/xml", "outcome": "Web fetch inaccessible; local network DNS unavailable"},
-    {"url": "https://api.crossref.org/works/10.1016/j.knosys.2026.116100", "outcome": "Metadata fetch inaccessible; no method retrieved"},
-    {"url": "https://api.openalex.org/works/https://doi.org/10.1016/j.knosys.2026.116100", "outcome": "Metadata fetch inaccessible; no method retrieved"},
-    {"url": "https://www.researchgate.net/publication/404495917_Shortening_the_prefix_Members_and_non-members_exhibit_divergent_behavior", "outcome": "Search page advertises request-full-text; no full paper obtained"},
-    {"query": "Exact title and SPW-MIA searches for PDF, arXiv and GitHub author code", "outcome": "No accessible full method or author implementation found"}
+  "retrieved": [
+    "Abstract",
+    "Introduction",
+    "Highlights",
+    "Methodology section outline only (3.1 through 3.5)",
+    "Conclusion excerpt"
   ],
-  "implementation_decision": "User-authorized SPW-inspired approximation. Every implemented equation and schedule is ours, not attributed to a published equation number. No paper reproduction claim."
+  "unavailable": [
+    "Complete method sections 3.3, 3.4 and 3.5",
+    "All numbered method equations",
+    "Algorithms/pseudocode",
+    "Exact dynamic shortening acceptance, stopping and selection criteria",
+    "Exact token weight definition/normalization",
+    "Exact distribution divergence definition, orientation and score combination",
+    "Published recommended/default hyperparameters",
+    "Original experimental context lengths",
+    "Author source implementation"
+  ],
+  "attempts": [
+    {
+      "url": "https://doi.org/10.1016/j.knosys.2026.116100",
+      "outcome": "Preview indexed; direct DOI redirect fetch inaccessible"
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S0950705126008269",
+      "outcome": "403 Forbidden"
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S0950705126008269/pdfft",
+      "outcome": "PDF not retrievable"
+    },
+    {
+      "url": "https://api.elsevier.com/content/article/pii/S0950705126008269?httpAccept=text/xml",
+      "outcome": "Web fetch inaccessible; local network DNS unavailable"
+    },
+    {
+      "url": "https://api.crossref.org/works/10.1016/j.knosys.2026.116100",
+      "outcome": "Metadata fetch inaccessible; no method retrieved"
+    },
+    {
+      "url": "https://api.openalex.org/works/https://doi.org/10.1016/j.knosys.2026.116100",
+      "outcome": "Metadata fetch inaccessible; no method retrieved"
+    },
+    {
+      "url": "https://www.researchgate.net/publication/404495917_Shortening_the_prefix_Members_and_non-members_exhibit_divergent_behavior",
+      "outcome": "Search page advertises request-full-text; no full paper obtained"
+    },
+    {
+      "query": "Exact title and SPW-MIA searches for PDF, arXiv and GitHub author code",
+      "outcome": "No accessible full method or author implementation found"
+    },
+    {
+      "date": "2026-10-31",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0950705126008269",
+      "outcome": "Web retrieval returned HTTP 403; no full method obtained"
+    },
+    {
+      "date": "2026-10-31",
+      "url": "https://api.elsevier.com/content/article/pii/S0950705126008269?httpAccept=text/xml",
+      "outcome": "Inaccessible via web retrieval tool"
+    },
+    {
+      "date": "2026-10-31",
+      "query": "DOI/exact title/SPW-MIA with GitHub, PDF and author-name searches",
+      "outcome": "No accessible complete equations, supplementary algorithm or official implementation located"
+    }
+  ],
+  "implementation_decision": "User-authorized SPW-inspired approximation. Every implemented equation and schedule is ours, not attributed to a published equation number. No paper reproduction claim.",
+  "latest_verification_date": "2026-10-31"
 }

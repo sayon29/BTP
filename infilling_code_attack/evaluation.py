@@ -44,21 +44,26 @@ def evaluate(scored,selected,static_scores,adaptive_scores,out,mode,timing=None)
     valid=scored.status.eq('valid')
     if not np.isfinite(scored.loc[valid,'infilling_score'].to_numpy(dtype=float)).all() or scored.loc[~valid,'infilling_score'].notna().any():
         raise ValueError('Score validity flag disagreement')
-    # Require complete baseline/adaptive identity coverage BEFORE explicit invalid filtering.
+    # Require complete static baseline identity coverage before invalid filtering.
     base=match_scores(selected['heldout'],static_scores)
-    adaptive=exact_match(selected['heldout'],adaptive_scores,['adaptive_score'])
+    adaptive=None
+    if adaptive_scores is not None:
+        adaptive=exact_match(selected['heldout'],adaptive_scores,['adaptive_score'])
     held_valid=selected['heldout'][selected['heldout'].sample_id.isin(scored.loc[valid,'sample_id'])]
     cal_valid=selected['calibration'][selected['calibration'].sample_id.isin(scored.loc[valid,'sample_id'])]
     calibration=exact_match(cal_valid,scored.loc[valid],['infilling_score']);threshold=calibrate(calibration)
     write_json(Path(out)/'threshold.json',threshold)
     matched=exact_match(held_valid,scored.loc[valid],['infilling_score'])
-    baseline=base.set_index('sample_id');a=adaptive.set_index('sample_id')
+    baseline=base.set_index('sample_id')
     for dest,source in [('static_sersem_score','greybox_score'),('lumia_score','lumia_score'),('fusion_score','fusion_score')]:
         matched[dest]=baseline.loc[matched.sample_id,source].to_numpy()
-    matched['adaptive_sersem_score']=a.loc[matched.sample_id,'adaptive_score'].to_numpy()
+    columns=['infilling_score','static_sersem_score','lumia_score','fusion_score']
+    if adaptive is not None:
+        a=adaptive.set_index('sample_id')
+        matched['adaptive_sersem_score']=a.loc[matched.sample_id,'adaptive_score'].to_numpy()
+        columns.insert(2,'adaptive_sersem_score')
     if threshold['threshold'] is not None:matched['infilling_predicted_member']=matched.infilling_score>=threshold['threshold']
     else:matched['infilling_predicted_member']=pd.array([None]*len(matched),dtype='boolean')
-    columns=['infilling_score','static_sersem_score','adaptive_sersem_score','lumia_score','fusion_score']
     diagnostic=metric_report(matched,columns)
     def deployed(group):
         if threshold['threshold'] is None:return dict(status='threshold unavailable',tpr=None,fpr=None)
@@ -84,7 +89,9 @@ def evaluate(scored,selected,static_scores,adaptive_scores,out,mode,timing=None)
                                                   for role,frame in selected.items()}),
         deployed_calibrated_threshold=dict(**threshold,overall=deployed(matched),by_language={l:deployed(g) for l,g in matched.groupby('language')}),
         heldout_diagnostic_roc_only=diagnostic,paired_differences=dict(overall=difference(matched),by_language={l:difference(g) for l,g in matched.groupby('language')}),
-        timing=timing or {},limitations=['Code/domain, 128-token span and FP16/FP64 arithmetic adaptations; no benchmark-result equivalence claim',
+        timing=timing or {},comparisons=dict(adaptive_sersem_included=adaptive is not None,paired_methods=columns),
+        limitations=['Code/domain, 128-token span and FP16/FP64 arithmetic adaptations; no benchmark-result equivalence claim',
+            'Adaptive comparison is omitted when no exact-identity adaptive score file is attached',
             'Pinned author-code context-specific normalization and end handling, not literal Appendix D pseudocode typos',
             'Invalid IDs are retained in scores/coverage; all five comparisons use exactly the same explicitly valid cohort',
             'Diagnostic held-out ROC thresholds never deploy; no direction or parameter search',

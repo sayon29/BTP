@@ -5,9 +5,11 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import shutil
 from types import SimpleNamespace
 import tempfile
 import unittest
+import zipfile
 from unittest.mock import patch
 import numpy as np
 import pandas as pd
@@ -225,6 +227,13 @@ class InfillingSynthetic(unittest.TestCase):
         self.assertIsNone(report['deployed_calibrated_threshold']['threshold'])
         self.assertNotIn('auc_roc',report['heldout_diagnostic_roc_only']['infilling_score']['overall'])
 
+    def test_evaluation_does_not_require_optional_adaptive_scores(self):
+        scored,baseline,_=self.evaluation_frames()
+        with patch('infilling_code_attack.evaluation.atomic_parquet'):
+            report=evaluate(scored,self.selected,baseline,None,self.out,'smoke')
+        self.assertFalse(report['comparisons']['adaptive_sersem_included'])
+        self.assertNotIn('adaptive_sersem_score',report['comparisons']['paired_methods'])
+
     def test_preparation_orchestration_and_audit(self):
         contents={r['sample_id']:f'{role}:{i}' for role,frame in self.original.items() for i,r in enumerate(frame.to_dict('records'))}
         class Sources:
@@ -248,6 +257,55 @@ class InfillingSynthetic(unittest.TestCase):
         nb=json.loads(p.read_text())
         for c in nb['cells']:
             if c['cell_type']=='code':ast.parse(''.join(c['source']));self.assertEqual(c['outputs'],[])
+        code=[''.join(c['source']) for c in nb['cells'] if c['cell_type']=='code']
+        install=next(i for i,s in enumerate(code) if 'install_dependencies(' in s)
+        imports=next(i for i,s in enumerate(code) if 'from infilling_code_attack.cache import' in s)
+        self.assertLess(install,imports);self.assertIn('require_cuda=True',code[install])
+        self.assertIn('ADAPTIVE_SCORES = ""',code[0])
+        close=next(i for i,s in enumerate(code) if 'cache.close()' in s)
+        archive=next(i for i,s in enumerate(code) if 'create_results_archive(' in s)
+        self.assertLess(close,archive)
+
+    def test_source_initializer_accepts_zip_and_extracted_tree(self):
+        notebook=Path('notebooks/06_infilling_code.ipynb')
+        package_zip=Path('notebooks/infilling_kaggle_source.zip')
+        if not notebook.is_file() or not package_zip.is_file():
+            self.skipTest('Notebook/package ZIP absent in uploaded source bundle')
+        nb=json.loads(notebook.read_text())
+        source=next(''.join(c['source']) for c in nb['cells'] if c['cell_type']=='code' and 'SOURCE_MANIFEST_SHA256' in ''.join(c['source']))
+        for extracted in (False,True):
+            with tempfile.TemporaryDirectory() as tmp:
+                root=Path(tmp);mount=root/'mounted-source';mount.mkdir()
+                if extracted:
+                    with zipfile.ZipFile(package_zip) as archive:archive.extractall(mount)
+                    upload_zip=''
+                else:
+                    upload_zip=mount/'infilling_kaggle_source.zip';shutil.copy2(package_zip,upload_zip)
+                project=root/'infilling-code-source-v2'
+                scope=dict(Path=Path,INPUT_ROOT=root,UPLOAD_SOURCE=root/'missing-configured-source',UPLOAD_ZIP='',
+                    PROJECT_ROOT=project,hashlib=hashlib,json=json,os=__import__('os'),
+                    shutil=shutil,subprocess=__import__('subprocess'),sys=__import__('sys'),zipfile=zipfile)
+                exec(compile(source,'notebook-source-bootstrap','exec'),scope)
+                self.assertTrue((project/'infilling_code_attack/reproducibility.json').is_file())
+                self.assertTrue((project/'shared/kaggle_setup.py').is_file())
+                self.assertEqual(len(scope['source_manifest']),len(json.loads((project/'infilling_code_attack/source_manifest.json').read_text())))
+                for added in (str(project),str(project/'SERSEM-Poisoned-Chalice-Competition-2026/code')):
+                    if added in scope['sys'].path:scope['sys'].path.remove(added)
+
+    def test_results_archive_checks_required_files_and_contains_closed_cache(self):
+        from infilling_code_attack.archive import REQUIRED_OUTPUTS,create_results_archive
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);out=root/'run';out.mkdir()
+            for name in REQUIRED_OUTPUTS:
+                if name=='infilling_cache.sqlite':
+                    cache=Cache(out/name);cache.close()
+                else:(out/name).write_text('{}')
+            archive=create_results_archive(out,root,'infilling-code-smoke-v1')
+            with zipfile.ZipFile(archive) as z:
+                self.assertIsNone(z.testzip());self.assertTrue(set(REQUIRED_OUTPUTS)<=set(z.namelist()))
+            (out/'metrics.json').unlink()
+            with self.assertRaisesRegex(FileNotFoundError,'metrics.json'):
+                create_results_archive(out,root,'infilling-code-smoke-v1')
 
 
 class TorchSynthetic(unittest.TestCase):

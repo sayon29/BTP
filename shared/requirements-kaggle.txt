@@ -1,5 +1,6 @@
-# Pin attack APIs; preserve compatible installed Kaggle scientific/CUDA packages.
-# kaggle_setup.py constrains protected packages to their installed versions.
+# Exact saved SERSEM baseline environment (Results/Sersem_Baseline/config.json).
+# PyTorch CUDA local versions are intentional. kaggle_setup installs only pins
+# that differ and adds the cu128 wheel index only when a torch-family pin is pending.
 transformers==4.52.4
 tokenizers==0.21.4
 huggingface-hub==0.30.2
@@ -8,11 +9,11 @@ datasets==4.6.1
 dill==0.4.0
 multiprocess==0.70.18
 fsspec==2025.12.0
-numpy>=2.1,<3
-pandas>=2.2,<3
-pyarrow>=21,<25
-scikit-learn>=1.6,<2
-matplotlib>=3.8,<4
+numpy==2.1.3
+pandas==2.3.3
+pyarrow==23.0.1
+scikit-learn==1.6.1
+matplotlib==3.10.0
 flake8==7.3.0
 pyenchant==3.3.0
 tree-sitter==0.25.2
@@ -21,4 +22,15 @@ tree-sitter-java==0.23.5
 tree-sitter-python==0.25.0
 tree-sitter-ruby==0.23.1
 tree-sitter-rust==0.24.0
-psutil>=5.9,<8
+psutil==5.9.5
+torch==2.11.0+cu128
+contourpy==1.3.3
+h5py==3.16.0
+kiwisolver==1.5.1
+llvmlite==0.44.0
+numba==0.61.2
+pillow==13.0.0
+scipy==1.16.3
+torchaudio==2.11.0+cu128
+torchvision==0.26.0+cu128
+triton==3.6.0

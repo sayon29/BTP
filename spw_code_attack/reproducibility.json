@@ -32,5 +32,9 @@
     "calibration": 200,
     "heldout": 1000
   },
-  "head_projection": "fixed one-row LM head; lossless native float16 terminal cache"
+  "head_projection": "fixed one-row LM head; lossless native float16 terminal cache",
+  "scoring_roles": [
+    "calibration",
+    "heldout"
+  ]
 }

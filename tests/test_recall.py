@@ -231,6 +231,17 @@ class RecallSynthetic(unittest.TestCase):
             other=evaluate(changed,selected,static,adaptive,self.out,'smoke')
         self.assertEqual(report['deployed_calibrated_threshold']['threshold'],other['deployed_calibrated_threshold']['threshold'])
 
+    def test_evaluation_continues_without_adaptive_scores(self):
+        selected=self.selected
+        scored=pd.concat(list(selected.values()),ignore_index=True)
+        scored['recall_score']=1.+scored.is_member*.1
+        static=selected['heldout'].copy()
+        for c in ['greybox_score','lumia_score','fusion_score']: static[c]=static.is_member*.2
+        with patch('recall_code_attack.evaluation.atomic_parquet'):
+            report=evaluate(scored,selected,static,None,self.out,'smoke')
+        self.assertFalse(report['comparisons']['adaptive_sersem_included'])
+        self.assertNotIn('adaptive_sersem_score',report['comparisons']['paired_methods'])
+
     def test_preparation_and_lazy_orchestration_resume(self):
         from recall_code_attack.runner import prepare_plans, run_scores
         contents={}
@@ -287,6 +298,13 @@ class RecallSynthetic(unittest.TestCase):
                 ast.parse(''.join(c['source']))
                 self.assertEqual(c['outputs'],[])
         self.assertTrue(any('MODE = ' in ''.join(c['source']) for c in nb['cells']))
+        code=[''.join(c['source']) for c in nb['cells'] if c['cell_type']=='code']
+        setup_index=next(i for i,s in enumerate(code) if 'install_dependencies(' in s)
+        data_index=next(i for i,s in enumerate(code) if 'from adaptive_token_attack.data import' in s)
+        self.assertLess(setup_index,data_index)
+        self.assertIn('require_cuda=True',code[setup_index])
+        self.assertIn('ADAPTIVE_SCORES = ""',code[0])
+        self.assertIn('if adaptive_path is not None',code[data_index])
 
 
 class OptionalTorchSynthetic(unittest.TestCase):

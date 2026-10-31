@@ -1,0 +1,9 @@
+{
+  "shadow": "/kaggle/input/datasets/sayonsujitmondal/sersem-baseline-1000-results3/shadow_manifest.parquet",
+  "validation": "/kaggle/input/datasets/sayonsujitmondal/sersem-baseline-1000-results3/fusion_fit_manifest.parquet",
+  "calibration": "/kaggle/input/datasets/sayonsujitmondal/sersem-baseline-1000-results3/threshold_calibration_manifest.parquet",
+  "heldout": "/kaggle/input/datasets/sayonsujitmondal/sersem-baseline-1000-results3/heldout_test_manifest.parquet",
+  "scores": "/kaggle/input/datasets/sayonsujitmondal/sersem-baseline-1000-results3/heldout_test_scores.parquet",
+  "config": "/kaggle/input/datasets/sayonsujitmondal/sersem-baseline-1000-results3/config.json",
+  "adaptive_scores": "/kaggle/input/datasets/sayonsujitmondal/adaptive-1000-results/heldout_adaptive_scores.parquet"
+}

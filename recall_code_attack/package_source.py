@@ -16,7 +16,7 @@ def main():
               if p.is_file() and p.name != 'source_manifest.json']
     upstream = json.loads((root/'shared/upstream_manifest.json').read_text())
     files += ['SERSEM-Poisoned-Chalice-Competition-2026/'+p for p in upstream['source_sha256']]
-    files += ['tests/test_recall.py']
+    files += ['tests/test_recall.py', 'tests/test_kaggle_setup.py']
     files = sorted(set(files))
     hashes = {p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in files}
     manifest = root/'recall_code_attack/source_manifest.json'

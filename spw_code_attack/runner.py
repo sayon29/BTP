@@ -32,6 +32,21 @@ def audit_report(path):
                 exact_accounting=not pending and not malformed)
 
 
+
+def workload_estimate(scored, full_samples=1200):
+    fresh = scored.loc[~scored.cache_hit]
+    if fresh.empty:
+        return dict(status='unavailable_cache_only', full_scoring_samples=full_samples)
+    seconds = float(fresh.session_seconds.mean())
+    calls = float(fresh.session_forward_calls.mean())
+    return dict(status='measured_extrapolation', measured_samples=len(fresh),
+        full_scoring_samples=full_samples, mean_seconds_per_sample=seconds,
+        mean_transformer_calls_per_sample=calls,
+        estimated_full_scoring_minutes=seconds*full_samples/60,
+        estimated_full_transformer_calls=calls*full_samples,
+        caveat='Linear estimate from completed uncached samples on this runtime; excludes setup, source retrieval and planning. Partial-cache recovery can underestimate fresh-run cost; prefix lengths and sharing vary.')
+
+
 def run_scores(selected,plans,identity,cache,predictor_factory,monitor,out):
     import pandas as pd
     out=Path(out);rows=pd.concat(list(selected.values()),ignore_index=True)
@@ -59,7 +74,8 @@ def run_scores(selected,plans,identity,cache,predictor_factory,monitor,out):
         session_head_forward_calls=engine.head_calls,session_model_seconds=engine.model_seconds,
         mean_session_seconds_per_example=float(scored.session_seconds.mean()),
         mean_cached_result_computation_seconds=float(scored.computation_seconds.mean()),
-        cached_samples=int(scored.cache_hit.sum()),samples=len(scored),persistent_call_audit=audit_report(out/'forward_calls.jsonl'),
+        cached_samples=int(scored.cache_hit.sum()),samples=len(scored),
+        full_workload_estimate=workload_estimate(scored),persistent_call_audit=audit_report(out/'forward_calls.jsonl'),
         timing_note='Cached result timing excludes work before interrupted partial-sample recovery. Persistent audit counts all recorded attempts; hard-killed unfinished operations are explicitly unknown. Cache import does not import historic call logs.')
     write_json(out/'timing.json',timing)
     return scored,timing

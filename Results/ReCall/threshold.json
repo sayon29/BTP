@@ -1,0 +1,10 @@
+{
+  "source_role": "calibration",
+  "target_fpr": 0.01,
+  "threshold": 1.7539081002938544,
+  "direction": "higher_is_member",
+  "calibration_manifest": "ef5f5516d4449fa8a7a55f57f0af42efa70167374912bd3da6a6d18bee3fa33a",
+  "negatives": 100,
+  "calibration_tpr": 0.0,
+  "calibration_fpr": 0.01
+}

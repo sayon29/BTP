@@ -1,0 +1,131 @@
+{
+  "status": "complete",
+  "method_name": "Infilling Score (Raoof et al., ICLR 2025), code/128-token adaptation",
+  "method_status": "author-code-verified normalized ratio; code/domain/span/precision adaptations documented",
+  "mode": "full",
+  "selection": {
+    "schema": "adaptive-selection-v1",
+    "mode": "full",
+    "seed": 42,
+    "expected_counts": {
+      "shadow": 1600,
+      "validation": 200,
+      "calibration": 200,
+      "heldout": 1000
+    },
+    "selection_policy": "all-saved-rows-v1",
+    "original_manifests": {
+      "shadow": "552b8f72177c95d8a6157cf952a7483c69cba11c881d3735deb9c235f555e69b",
+      "validation": "269235c0db44296562bca4b1c94679f2ca6eef0c419f21248f4f4a7657f4e8b4",
+      "calibration": "ef5f5516d4449fa8a7a55f57f0af42efa70167374912bd3da6a6d18bee3fa33a",
+      "heldout": "4811520ba8c63afd311bf746ae05481b8c74f6c276ccd6fa22d2ffbd9d1bdda7"
+    },
+    "selected_manifests": {
+      "shadow": "552b8f72177c95d8a6157cf952a7483c69cba11c881d3735deb9c235f555e69b",
+      "validation": "269235c0db44296562bca4b1c94679f2ca6eef0c419f21248f4f4a7657f4e8b4",
+      "calibration": "ef5f5516d4449fa8a7a55f57f0af42efa70167374912bd3da6a6d18bee3fa33a",
+      "heldout": "4811520ba8c63afd311bf746ae05481b8c74f6c276ccd6fa22d2ffbd9d1bdda7"
+    },
+    "artifact_sha256": "f9e0b91653e240a6e8d15279ca97ac2088745834aa46d6459b93a20c52bf7c30"
+  },
+  "scoring_sha256": "6baa232a8ff8a23c8a21df3805d0993bc876746fac8eab50c309310c3bf7c856",
+  "source_manifest_sha256": "e32bc6ff41416edb3b12d221898f5983219a7f22138cb31dac113b409170243c",
+  "author_commit": "54ee252e378afffe09f4dbde5c2ca3adbf8ccfe0",
+  "input_hashes": {
+    "shadow": "85811ddb752c85c51466190f6382140ef8f50dcf2b93fa35183c9644ba7c9ee0",
+    "validation": "dd18ef3ddb528281195a3821474246cc5f4ba36e5a62a88e400ef2d25d2efc5a",
+    "calibration": "62f909eb6bb47d863292f8af6a7e1995b676fcec5eb9355d39a8a81c2fbb6861",
+    "heldout": "ba13b4228cecaf9bb15c9ba1179e90a32a45668fff25926b2250687254239cc5",
+    "scores": "469e10ae8b798246bef3042109b184cb80d18a88d0ba8d51838fa8196b4deb5d",
+    "config": "313729c24fff3f9aa6aa59f6815d0ae90b09acd36f91c87d0a7bbfcbb80dcdbd"
+  },
+  "adaptive_scores_sha256": "d9d3951d84f361cf526894447e73d20ab9c021e9f124154293a9e9a1044c2856",
+  "selected_counts": {
+    "shadow": 1600,
+    "validation": 200,
+    "calibration": 200,
+    "heldout": 1000
+  },
+  "coverage": {
+    "requested": 1000,
+    "processed": 1000,
+    "valid_matched": 1000,
+    "invalid": 0,
+    "selected_valid_fraction": 1.0,
+    "original_heldout_requested": 1000,
+    "original_heldout_fraction": 1.0,
+    "by_language": {
+      "Go": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      },
+      "Java": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      },
+      "Python": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      },
+      "Ruby": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      },
+      "Rust": {
+        "requested": 200,
+        "valid": 200,
+        "invalid": 0
+      }
+    }
+  },
+  "invalid_samples": {
+    "total": 0,
+    "by_role": {},
+    "reasons": {},
+    "heldout_ids": []
+  },
+  "timing": {
+    "method_name": "Infilling Score (Raoof et al., ICLR 2025), code/128-token adaptation",
+    "method_status": "author-code-verified normalized ratio; code/domain/span/precision adaptations documented",
+    "statistic": "pinned-author-normalization; paper Eqs 9-11; code/span adaptation",
+    "session_wall_seconds": 3660.6064712039997,
+    "session_wall_seconds_per_example": 1.2202021575113333,
+    "session_transformer_forward_calls": 28279,
+    "session_transformer_calls_per_example": 9.426333333333334,
+    "session_head_forward_calls": 36889,
+    "session_model_seconds": 2966.4523709949935,
+    "mean_session_seconds_per_example": 1.2120191545606658,
+    "mean_cached_result_computation_seconds": 1.2120191545606658,
+    "cached_samples": 0,
+    "samples": 3000,
+    "persistent_call_audit": {
+      "transformer_forward_calls": 28279,
+      "lm_head_forward_calls": 36889,
+      "model_seconds": 2966.4523709949935,
+      "interrupted_unaccounted_operations": 0,
+      "malformed_log_lines": 0,
+      "exact_accounting": true
+    },
+    "timing_note": "Cached result timing excludes work before interrupted partial-sample recovery. Persistent audit counts all recorded attempts; hard-killed unfinished operations are explicitly unknown. Cache import does not import historic call logs."
+  },
+  "span_summary": {
+    "short_spans": 341,
+    "fewer_than_128_eligible": 3000
+  },
+  "artifacts": {
+    "infilling_cache.sqlite": "7cded54b30761ef40495b20331c8dd429c6511a07da051eb9cea43519fe9a212",
+    "threshold.json": "4ec51aeaa922b6446e2977ccb1a68082458b96b3ee674e5c2514e7ea648ea34e",
+    "reproducibility.json": "2865ba0a6477e91facffa3e394806fae8082214c0f213a1fcfd13b8ff40fca09",
+    "config.json": "3ab0a6315765930373aeb53737f016c0ede7463e3001abf9ffe291f84f18eed0",
+    "source_version_hashes.json": "993c0024eabce09ccd64df4e8ec7ea88373eca6abc7da31e39ffc89d3536751f",
+    "research_provenance.json": "29158a7aad07f3f2c274b294608f24e584194c5578b9dd25d115fa620552a409",
+    "infilling_scores.parquet": "b3f472ad89617e344c2a931f095cb46983380c7f4f4df1afbe44dc02ed891535",
+    "timing.json": "a3cab1128f3d4988a0800adfbbcced863ae7ac70469f729db60b722e282eb803",
+    "metrics.json": "1d4a96e5135dbfae1ee398a28bc7a27b87ff7a57eed4bd732f3da457a82986ab",
+    "matched_comparison.parquet": "be75690c0c9fba5b8337ccf20424606f9a38176fff0c8ad80b389ce287b4540e"
+  }
+}
