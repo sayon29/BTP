@@ -1,0 +1,471 @@
+{
+  "coverage": {
+    "requested": 1000,
+    "completed": 1000,
+    "valid": 962,
+    "failed": 38,
+    "coverage_fraction": 0.962,
+    "partial": false,
+    "all_requested_ids_completed": true,
+    "by_language_and_label": {
+      "Go/0": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 94,
+        "coverage_fraction": 0.94
+      },
+      "Go/1": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 100,
+        "coverage_fraction": 1.0
+      },
+      "Java/0": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 98,
+        "coverage_fraction": 0.98
+      },
+      "Java/1": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 99,
+        "coverage_fraction": 0.99
+      },
+      "Python/0": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 90,
+        "coverage_fraction": 0.9
+      },
+      "Python/1": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 92,
+        "coverage_fraction": 0.92
+      },
+      "Ruby/0": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 97,
+        "coverage_fraction": 0.97
+      },
+      "Ruby/1": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 99,
+        "coverage_fraction": 0.99
+      },
+      "Rust/0": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 96,
+        "coverage_fraction": 0.96
+      },
+      "Rust/1": {
+        "requested": 100,
+        "completed": 100,
+        "valid": 97,
+        "coverage_fraction": 0.97
+      }
+    }
+  },
+  "score_formula": "mean(neighbour NLL)-original NLL",
+  "metrics": {
+    "neighbourhood_score": {
+      "overall": {
+        "n": 962,
+        "negatives": 475,
+        "members": 487,
+        "auc_roc": 0.36498865232897443,
+        "tpr_at_fpr_le_1pct": 0.0,
+        "achieved_fpr": 0.0,
+        "diagnostic_roc_threshold": null,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 194,
+          "negatives": 94,
+          "members": 100,
+          "auc_roc": 0.2930851063829787,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Java": {
+          "n": 197,
+          "negatives": 98,
+          "members": 99,
+          "auc_roc": 0.39404246547103694,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Python": {
+          "n": 182,
+          "negatives": 90,
+          "members": 92,
+          "auc_roc": 0.3334541062801932,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Ruby": {
+          "n": 196,
+          "negatives": 97,
+          "members": 99,
+          "auc_roc": 0.34405914818285954,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Rust": {
+          "n": 193,
+          "negatives": 96,
+          "members": 97,
+          "auc_roc": 0.44415807560137455,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        }
+      }
+    }
+  },
+  "comparison_status": "exact matched IDs/labels on common successful cohort; see coverage",
+  "run_scope": {
+    "site_importance": "sersem",
+    "mode": "full",
+    "k": 5,
+    "model_id": "bigcode/starcoder2-3b",
+    "model_revision": "733247c55e3f73af49ce8e9c7949bf14af205928",
+    "dataset_id": "AISE-TUDelft/Poisoned-Chalice",
+    "dataset_revision": "ae3f42011bf55ab2910c83a342caf8a3c02bcd5d",
+    "max_length": 8192,
+    "dtype": "float16",
+    "seed": 42,
+    "heldout_manifest_sha256": "639c41dc4e25d818c52aeeef85a198234ac8cd0eac358e335c76f2cc41c181b2",
+    "full_heldout_manifest_sha256": "639c41dc4e25d818c52aeeef85a198234ac8cd0eac358e335c76f2cc41c181b2",
+    "baseline_scores_sha256": "469e10ae8b798246bef3042109b184cb80d18a88d0ba8d51838fa8196b4deb5d",
+    "structural_weight_provenance": "existing SERSEM Section 2.1 reconstruction; max target-token weight over affected spans; insertion=0"
+  },
+  "comparison_coverage": {
+    "matched": 962,
+    "neighbourhood_valid": 962,
+    "baseline_available": 1000,
+    "requested": 1000,
+    "complete": false
+  },
+  "matched_metrics": {
+    "neighbourhood_score": {
+      "overall": {
+        "n": 962,
+        "negatives": 475,
+        "members": 487,
+        "auc_roc": 0.36498865232897443,
+        "tpr_at_fpr_le_1pct": 0.0,
+        "achieved_fpr": 0.0,
+        "diagnostic_roc_threshold": null,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 194,
+          "negatives": 94,
+          "members": 100,
+          "auc_roc": 0.2930851063829787,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Java": {
+          "n": 197,
+          "negatives": 98,
+          "members": 99,
+          "auc_roc": 0.39404246547103694,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Python": {
+          "n": 182,
+          "negatives": 90,
+          "members": 92,
+          "auc_roc": 0.3334541062801932,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Ruby": {
+          "n": 196,
+          "negatives": 97,
+          "members": 99,
+          "auc_roc": 0.34405914818285954,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Rust": {
+          "n": 193,
+          "negatives": 96,
+          "members": 97,
+          "auc_roc": 0.44415807560137455,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        }
+      }
+    },
+    "lumia_score": {
+      "overall": {
+        "n": 962,
+        "negatives": 475,
+        "members": 487,
+        "auc_roc": 0.7030368529125689,
+        "tpr_at_fpr_le_1pct": 0.028747433264887063,
+        "achieved_fpr": 0.008421052631578947,
+        "diagnostic_roc_threshold": 0.9984745383262634,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 194,
+          "negatives": 94,
+          "members": 100,
+          "auc_roc": 0.725,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Java": {
+          "n": 197,
+          "negatives": 98,
+          "members": 99,
+          "auc_roc": 0.6914038342609771,
+          "tpr_at_fpr_le_1pct": 0.020202020202020204,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9995668649673461,
+          "low_fpr_resolution_limited": true
+        },
+        "Python": {
+          "n": 182,
+          "negatives": 90,
+          "members": 92,
+          "auc_roc": 0.746135265700483,
+          "tpr_at_fpr_le_1pct": 0.06521739130434782,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9955048561096191,
+          "low_fpr_resolution_limited": true
+        },
+        "Ruby": {
+          "n": 196,
+          "negatives": 97,
+          "members": 99,
+          "auc_roc": 0.748620222847027,
+          "tpr_at_fpr_le_1pct": 0.06060606060606061,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9980724334716797,
+          "low_fpr_resolution_limited": true
+        },
+        "Rust": {
+          "n": 193,
+          "negatives": 96,
+          "members": 97,
+          "auc_roc": 0.6131872852233677,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        }
+      }
+    },
+    "greybox_score": {
+      "overall": {
+        "n": 962,
+        "negatives": 475,
+        "members": 487,
+        "auc_roc": 0.6061904247271156,
+        "tpr_at_fpr_le_1pct": 0.014373716632443531,
+        "achieved_fpr": 0.008421052631578947,
+        "diagnostic_roc_threshold": 0.9995988011360168,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 194,
+          "negatives": 94,
+          "members": 100,
+          "auc_roc": 0.6428723404255321,
+          "tpr_at_fpr_le_1pct": 0.04,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9992486238479614,
+          "low_fpr_resolution_limited": true
+        },
+        "Java": {
+          "n": 197,
+          "negatives": 98,
+          "members": 99,
+          "auc_roc": 0.5736961451247166,
+          "tpr_at_fpr_le_1pct": 0.020202020202020204,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9997084140777588,
+          "low_fpr_resolution_limited": true
+        },
+        "Python": {
+          "n": 182,
+          "negatives": 90,
+          "members": 92,
+          "auc_roc": 0.6085748792270531,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        },
+        "Ruby": {
+          "n": 196,
+          "negatives": 97,
+          "members": 99,
+          "auc_roc": 0.5949182547120692,
+          "tpr_at_fpr_le_1pct": 0.010101010101010102,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9996764659881592,
+          "low_fpr_resolution_limited": true
+        },
+        "Rust": {
+          "n": 193,
+          "negatives": 96,
+          "members": 97,
+          "auc_roc": 0.6216709621993127,
+          "tpr_at_fpr_le_1pct": 0.0,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": null,
+          "low_fpr_resolution_limited": true
+        }
+      }
+    },
+    "fusion_score": {
+      "overall": {
+        "n": 962,
+        "negatives": 475,
+        "members": 487,
+        "auc_roc": 0.7033437803955473,
+        "tpr_at_fpr_le_1pct": 0.0513347022587269,
+        "achieved_fpr": 0.008421052631578947,
+        "diagnostic_roc_threshold": 0.9972254455089569,
+        "low_fpr_resolution_limited": false
+      },
+      "by_language": {
+        "Go": {
+          "n": 194,
+          "negatives": 94,
+          "members": 100,
+          "auc_roc": 0.7276595744680852,
+          "tpr_at_fpr_le_1pct": 0.01,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9983168125152588,
+          "low_fpr_resolution_limited": true
+        },
+        "Java": {
+          "n": 197,
+          "negatives": 98,
+          "members": 99,
+          "auc_roc": 0.6920222634508348,
+          "tpr_at_fpr_le_1pct": 0.0707070707070707,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9973660290241242,
+          "low_fpr_resolution_limited": true
+        },
+        "Python": {
+          "n": 182,
+          "negatives": 90,
+          "members": 92,
+          "auc_roc": 0.7458937198067633,
+          "tpr_at_fpr_le_1pct": 0.05434782608695652,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9973695278167725,
+          "low_fpr_resolution_limited": true
+        },
+        "Ruby": {
+          "n": 196,
+          "negatives": 97,
+          "members": 99,
+          "auc_roc": 0.7487243569717796,
+          "tpr_at_fpr_le_1pct": 0.050505050505050504,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9979776024818421,
+          "low_fpr_resolution_limited": true
+        },
+        "Rust": {
+          "n": 193,
+          "negatives": 96,
+          "members": 97,
+          "auc_roc": 0.6137242268041238,
+          "tpr_at_fpr_le_1pct": 0.010309278350515464,
+          "achieved_fpr": 0.0,
+          "diagnostic_roc_threshold": 0.9992466628551483,
+          "low_fpr_resolution_limited": true
+        }
+      }
+    }
+  },
+  "member_overlap_at_empirical_fpr_le_1pct": {
+    "lumia_score": {
+      "neighbourhood_detected_members": 0,
+      "sersem_detected_members": 14,
+      "intersection": 0,
+      "neighbourhood_only": 0,
+      "sersem_only": 14,
+      "union": 14,
+      "jaccard": 0.0,
+      "intersection_ids": [],
+      "neighbourhood_only_ids": []
+    },
+    "greybox_score": {
+      "neighbourhood_detected_members": 0,
+      "sersem_detected_members": 7,
+      "intersection": 0,
+      "neighbourhood_only": 0,
+      "sersem_only": 7,
+      "union": 7,
+      "jaccard": 0.0,
+      "intersection_ids": [],
+      "neighbourhood_only_ids": []
+    },
+    "fusion_score": {
+      "neighbourhood_detected_members": 0,
+      "sersem_detected_members": 25,
+      "intersection": 0,
+      "neighbourhood_only": 0,
+      "sersem_only": 25,
+      "union": 25,
+      "jaccard": 0.0,
+      "intersection_ids": [],
+      "neighbourhood_only_ids": []
+    }
+  },
+  "runtime": {
+    "session_id": "4213b04b5ba24aedb665a0918da9b26e",
+    "completed": 1000,
+    "newly_completed": 1000,
+    "session_seconds": 3869.288578832,
+    "examples_per_second": 0.2584454427800431,
+    "remaining_seconds_from_observed_rate": 0.0,
+    "target_forward_batches": 5848,
+    "target_texts_scored": 5848,
+    "target_nll_seconds": 3292.5707309629943,
+    "note": "Measured current-session generation+NLL+I/O; early ETA is length/cache-mixture dependent"
+  },
+  "observed_runtime_across_sessions_seconds": 3869.288578832,
+  "runtime_scope": "Recorded generation/scoring/I/O elapsed; excludes target initialization/setup and unlogged work at abrupt interruption."
+}

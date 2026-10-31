@@ -1,0 +1,107 @@
+{
+  "schema": "adaptive-experiment-v2",
+  "mode": "full",
+  "execution": {
+    "schema": "adaptive-selection-v1",
+    "mode": "full",
+    "seed": 42,
+    "expected_counts": {
+      "shadow": 1600,
+      "validation": 200,
+      "calibration": 200,
+      "heldout": 1000
+    },
+    "selection_policy": "all-saved-rows-v1",
+    "original_manifests": {
+      "shadow": "552b8f72177c95d8a6157cf952a7483c69cba11c881d3735deb9c235f555e69b",
+      "validation": "269235c0db44296562bca4b1c94679f2ca6eef0c419f21248f4f4a7657f4e8b4",
+      "calibration": "ef5f5516d4449fa8a7a55f57f0af42efa70167374912bd3da6a6d18bee3fa33a",
+      "heldout": "4811520ba8c63afd311bf746ae05481b8c74f6c276ccd6fa22d2ffbd9d1bdda7"
+    },
+    "selected_manifests": {
+      "shadow": "552b8f72177c95d8a6157cf952a7483c69cba11c881d3735deb9c235f555e69b",
+      "validation": "269235c0db44296562bca4b1c94679f2ca6eef0c419f21248f4f4a7657f4e8b4",
+      "calibration": "ef5f5516d4449fa8a7a55f57f0af42efa70167374912bd3da6a6d18bee3fa33a",
+      "heldout": "4811520ba8c63afd311bf746ae05481b8c74f6c276ccd6fa22d2ffbd9d1bdda7"
+    },
+    "artifact_sha256": "f9e0b91653e240a6e8d15279ca97ac2088745834aa46d6459b93a20c52bf7c30"
+  },
+  "source_manifest_sha256": "abc5f0fb886491f3ad72488c733446f63a90c1a8f5f0bcc15e5c7656da23d838",
+  "baseline_config_sha256": "313729c24fff3f9aa6aa59f6815d0ae90b09acd36f91c87d0a7bbfcbb80dcdbd",
+  "saved_scores_sha256": "469e10ae8b798246bef3042109b184cb80d18a88d0ba8d51838fa8196b4deb5d",
+  "manifests": {
+    "shadow": "552b8f72177c95d8a6157cf952a7483c69cba11c881d3735deb9c235f555e69b",
+    "validation": "269235c0db44296562bca4b1c94679f2ca6eef0c419f21248f4f4a7657f4e8b4",
+    "calibration": "ef5f5516d4449fa8a7a55f57f0af42efa70167374912bd3da6a6d18bee3fa33a",
+    "heldout": "4811520ba8c63afd311bf746ae05481b8c74f6c276ccd6fa22d2ffbd9d1bdda7"
+  },
+  "training": {
+    "max_epochs": 500,
+    "learning_rate": 0.03,
+    "patience": 40,
+    "min_delta": 1e-06,
+    "regularization": 0.01,
+    "calibration_l2": 0.0001,
+    "initial_scale": 4.0,
+    "initial_noise": 0.001,
+    "gradient_clip": 10.0,
+    "seed": 42
+  },
+  "extraction": {
+    "target": {
+      "model_id": "bigcode/starcoder2-3b",
+      "model_revision": "733247c55e3f73af49ce8e9c7949bf14af205928",
+      "dataset_id": "AISE-TUDelft/Poisoned-Chalice",
+      "dataset_revision": "ae3f42011bf55ab2910c83a342caf8a3c02bcd5d",
+      "dtype": "float16",
+      "max_length": 8192,
+      "greybox": {
+        "implementation": "section2.1-reconstruction-v1",
+        "epsilon": 1e-06,
+        "logit_chunk_size": 64
+      },
+      "versions": {
+        "transformers": "4.52.4",
+        "tokenizers": "0.21.4",
+        "huggingface-hub": "0.30.2",
+        "accelerate": "1.6.0",
+        "datasets": "4.6.1",
+        "dill": "0.4.0",
+        "multiprocess": "0.70.18",
+        "fsspec": "2025.12.0",
+        "numpy": "2.1.3",
+        "pandas": "2.3.3",
+        "pyarrow": "23.0.1",
+        "scikit-learn": "1.6.1",
+        "matplotlib": "3.10.0",
+        "flake8": "7.3.0",
+        "pyenchant": "3.3.0",
+        "tree-sitter": "0.25.2",
+        "tree-sitter-go": "0.25.0",
+        "tree-sitter-java": "0.23.5",
+        "tree-sitter-python": "0.25.0",
+        "tree-sitter-ruby": "0.23.1",
+        "tree-sitter-rust": "0.24.0",
+        "psutil": "5.9.5",
+        "torch": "2.11.0+cu128",
+        "contourpy": "1.3.3",
+        "h5py": "3.16.0",
+        "kiwisolver": "1.5.1",
+        "llvmlite": "0.44.0",
+        "numba": "0.61.2",
+        "pillow": "13.0.0",
+        "scipy": "1.16.3",
+        "torchaudio": "2.11.0+cu128",
+        "torchvision": "0.26.0+cu128",
+        "triton": "3.6.0"
+      },
+      "upstream_sha": "413f56040e5b4805bcf15ed794dec56bc4e16b41"
+    },
+    "attention_backend": "upstream",
+    "source_sha256": {
+      "adaptive_token_attack/features.py": "adb10bf2fea4f07702881d435eadb77e2117ebb3d8f638bb36e841d1b2a79fd9",
+      "shared/weighted_anomaly.py": "41aa9b87aa3dcfd86118c3618732f48a9a21e111d97e7e6322a41e8eef54573e",
+      "shared/upstream_manifest.json": "f8cb8621f0e29f1ac2864aa805449f21a59f528a9bcf12f34012a1f75ea0fbc1"
+    }
+  }
+}
