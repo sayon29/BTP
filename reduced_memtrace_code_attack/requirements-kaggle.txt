@@ -1,0 +1,2 @@
+# Preserve the exact completed baseline environment through its shared installer.
+-r ../shared/requirements-kaggle.txt

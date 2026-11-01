@@ -1,0 +1,2 @@
+# Use the existing idempotent installer on the exact saved SERSEM lock.
+-r ../shared/requirements-kaggle.txt

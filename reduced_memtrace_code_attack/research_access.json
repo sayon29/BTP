@@ -1,0 +1,17 @@
+{
+  "checked_date": "2026-11-01",
+  "paper": "https://aclanthology.org/2026.eacl-long.262/",
+  "pdf": "https://aclanthology.org/2026.eacl-long.262.pdf",
+  "methodology_read": "Section 2, pp. 5610\u20135611",
+  "author_code": "https://github.com/amazon-science/NeuralBreadcrumbs-MIA-EACL-2026",
+  "author_code_access": "Provided repository returned HTTP 404 via web tool; web search did not expose source files. Local git attempt additionally failed DNS. No author-code verification claimed.",
+  "verified_from_paper": [
+    "Euclidean adjacent-layer representation difference",
+    "Adjacent-layer cosine similarity",
+    "Maximum probability, top-two gap and entropy",
+    "Near-zero and peak hidden-state activation statistics",
+    "Cumulative context-mean change",
+    "Random-forest classifier"
+  ],
+  "adaptations": "See METHODOLOGY.md for all frozen reduced choices and omitted families"
+}

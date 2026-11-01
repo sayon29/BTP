@@ -1,0 +1,66 @@
+{
+  "memtrace_score": {
+    "overall": {
+      "n": 200,
+      "negatives": 100,
+      "members": 100,
+      "auc_roc": 0.6759999999999999,
+      "tpr_at_fpr_le_1pct": 0.1,
+      "achieved_fpr": 0.01,
+      "diagnostic_roc_threshold": 0.6783283332094914,
+      "low_fpr_resolution_limited": false
+    },
+    "by_language": {
+      "Go": {
+        "n": 40,
+        "negatives": 20,
+        "members": 20,
+        "auc_roc": 0.7975,
+        "tpr_at_fpr_le_1pct": 0.3,
+        "achieved_fpr": 0.0,
+        "diagnostic_roc_threshold": 0.6625405544043602,
+        "low_fpr_resolution_limited": true
+      },
+      "Java": {
+        "n": 40,
+        "negatives": 20,
+        "members": 20,
+        "auc_roc": 0.8,
+        "tpr_at_fpr_le_1pct": 0.2,
+        "achieved_fpr": 0.0,
+        "diagnostic_roc_threshold": 0.7000452018585428,
+        "low_fpr_resolution_limited": true
+      },
+      "Python": {
+        "n": 40,
+        "negatives": 20,
+        "members": 20,
+        "auc_roc": 0.59,
+        "tpr_at_fpr_le_1pct": 0.0,
+        "achieved_fpr": 0.0,
+        "diagnostic_roc_threshold": null,
+        "low_fpr_resolution_limited": true
+      },
+      "Ruby": {
+        "n": 40,
+        "negatives": 20,
+        "members": 20,
+        "auc_roc": 0.7224999999999999,
+        "tpr_at_fpr_le_1pct": 0.15,
+        "achieved_fpr": 0.0,
+        "diagnostic_roc_threshold": 0.6556762727942986,
+        "low_fpr_resolution_limited": true
+      },
+      "Rust": {
+        "n": 40,
+        "negatives": 20,
+        "members": 20,
+        "auc_roc": 0.4375,
+        "tpr_at_fpr_le_1pct": 0.0,
+        "achieved_fpr": 0.0,
+        "diagnostic_roc_threshold": null,
+        "low_fpr_resolution_limited": true
+      }
+    }
+  }
+}

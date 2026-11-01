@@ -1,0 +1,46 @@
+{
+  "model_id": "bigcode/starcoder2-3b",
+  "model_revision": "733247c55e3f73af49ce8e9c7949bf14af205928",
+  "dtype": "float16",
+  "seed": 42,
+  "dataset_id": "AISE-TUDelft/Poisoned-Chalice",
+  "dataset_revision": "ae3f42011bf55ab2910c83a342caf8a3c02bcd5d",
+  "schema": "reduced-memtrace-v1",
+  "method_name": "Reduced memTrace (hidden-state, activation, confidence and context-evolution features)",
+  "paper_faithful": false,
+  "numerical_implementation": "fp32-reductions-v1",
+  "analysis_tokens": 128,
+  "near_zero_threshold": 0.001,
+  "std_correction": 0,
+  "cosine_eps": 1e-08,
+  "boundary_policy": "HF hidden-state tuple including embedding boundary and final normalized state; all adjacent transitions",
+  "selected_boundary_policy": "round-half-up(L * [0,.25,.5,.75,1]); deduplicate",
+  "token_policy": "first 128 input positions, baseline add_special_tokens=True; hidden features use all nonpadding positions; confidence only shifted nonspecial positive-offset code targets",
+  "batch_size": 1,
+  "memory_stop_gib": 11,
+  "feature_scaling": "none; fixed RF uses raw features",
+  "classifier": {
+    "n_estimators": 300,
+    "max_depth": 12,
+    "min_samples_leaf": 5,
+    "class_weight": "balanced",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "hyperparameter_search": false,
+  "smoke_counts": {
+    "shadow": 80,
+    "validation": 20,
+    "calibration": 20,
+    "heldout": 30
+  },
+  "full_counts": {
+    "shadow": 1600,
+    "validation": 200,
+    "calibration": 200,
+    "heldout": 1000
+  },
+  "expected_num_hidden_layers": 30,
+  "expected_hidden_size": 3072,
+  "prediction_reduction": "fixed estimator order FP64 probability sum; RF fitting n_jobs=-1"
+}
